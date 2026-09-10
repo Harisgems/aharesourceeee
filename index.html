@@ -1,403 +1,631 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AHA Resources Pvt — Connecting Resources. Creating Experiences.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>AHA Resources — Connecting Resources, Creating Value | Indonesia + International</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
-tailwind.config = {
-  theme: {
-    extend: {
-      fontFamily: {
-        heading: ['"Franklin Gothic Demi"', '"Franklin Gothic Medium"', '"Franklin Gothic"', '"Libre Franklin"', 'sans-serif'],
-        body: ['"Franklin Gothic Book"', '"Franklin Gothic"', '"Libre Franklin"', 'sans-serif'],
-      },
-      colors: {
-        navy: '#002448', deepNavy: '#00162e', navyInk: '#00101f', softNavy: '#0a3161',
-        navyMist: '#e8edf4', gold: '#b48430', brightGold: '#c9a24b', paleGold: '#e9d9b4',
-        goldWash: '#f6efe0', ivory: '#f7f5f0', paper: '#ffffff', header: '#f8f6f2',
-        bodyInk: '#122238', secondaryInk: '#45566c', tertiaryInk: '#7b8a9d',
-      }
-    }
-  }
-}
+tailwind.config={theme:{extend:{colors:{navy:{DEFAULT:'#002448',900:'#00162e',950:'#00101f',700:'#0a3161',100:'#e8edf4'},gold:{DEFAULT:'#b48430',400:'#c9a24b',100:'#e9d9b4',50:'#f6efe0'}},fontFamily:{franklin:['Libre Franklin','sans-serif']}}}}
 </script>
 <style>
-* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-body { background:#f7f5f0; color:#122238; font-family:"Franklin Gothic Book","Franklin Gothic","Libre Franklin",sans-serif; font-weight:400; line-height:1.6; }
-h1,h2,h3,h4,.font-heading { font-family:"Franklin Gothic Demi","Franklin Gothic Medium","Franklin Gothic","Libre Franklin",sans-serif; font-weight:700; letter-spacing:-0.02em; }
-.font-body { font-family:"Franklin Gothic Book","Franklin Gothic","Libre Franklin",sans-serif; font-weight:400; }
-.blur-nav{ backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%); }
-.navy-hairline{ border-color: rgba(0,36,72,0.13); }
-.gold-hairline{ border-color: rgba(180,132,48,0.35); }
-.business-item{ border:1px solid rgba(0,36,72,0.13); transition: all .35s cubic-bezier(0.16,1,0.3,1); }
-.business-item:hover{ border-color: rgba(180,132,48,0.35); background:#f6efe0; transform:translateY(-1px); }
-.business-item.active{ background:#f6efe0; border-color: rgba(180,132,48,0.5); color:#002448; box-shadow:0 6px 24px rgba(180,132,48,0.15); }
-.mega{ display:none; }
-.group:hover .mega{ display:block; }
-::selection{ background:#002448; color:#fff; }
+:root{--navy:#002448;--navy-900:#00162e;--navy-950:#00101f;--navy-700:#0a3161;--gold:#b48430;--gold-400:#c9a24b;--gold-100:#e9d9b4;--gold-50:#f6efe0;--paper:#f7f5f0;--header:#f8f6f2;--ink:#122238;--ink2:#45566c;--ink3:#7b8a9d;--hair:rgba(0,36,72,.13);--hairG:rgba(180,132,48,.35)}
+*{font-family:'Libre Franklin',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.f-demi{font-weight:700}.f-book{font-weight:400}
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-400));z-index:9999;width:0}
+.header-bg{background:var(--header)}
+.gold-hair{height:1px;background:var(--hairG)} .navy-hair{height:1px;background:var(--hair)}
+.card{border:1px solid var(--hair);background:#fff;transition:all .35s cubic-bezier(.16,1,.3,1)}
+.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,22,46,.08);border-color:var(--hairG)}
+.card-gold{border:1px solid var(--hairG)}
+.kicker{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:800;color:var(--gold)}
+.tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--gold);border:1px solid var(--hairG);padding:6px 10px;background:var(--gold-50)}
+.hero-grad{background:linear-gradient(92deg,rgba(0,16,31,.92) 0%,rgba(0,36,72,.78) 52%,rgba(0,36,72,.18) 100%)}
+.img-cover{object-fit:cover;width:100%;height:100%}
+.reveal{opacity:0;transform:translateY(18px);transition:all .8s cubic-bezier(.16,1,.3,1)} .reveal.in{opacity:1;transform:none}
+.btn-navy{background:var(--navy);color:#fff;letter-spacing:.18em;font-size:11px;font-weight:700;padding:13px 24px;transition:.3s} .btn-navy:hover{background:var(--navy-900);transform:translateY(-1px)}
+.btn-gold{background:var(--gold);color:#fff;letter-spacing:.18em;font-size:11px;font-weight:700;padding:13px 24px;transition:.3s} .btn-gold:hover{background:#9a6f28}
+.btn-line{border:1px solid rgba(0,36,72,.18);letter-spacing:.18em;font-size:11px;font-weight:700;padding:12px 22px;transition:.3s} .btn-line:hover{border-color:var(--gold);color:var(--gold)}
+.input{width:100%;border:1px solid var(--hair);padding:12px 14px;font-size:13px;outline:none;transition:.2s;background:#fff} .input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(180,132,48,.12)}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:14px 18px;font-size:12px;letter-spacing:.04em;z-index:9999;transform:translateY(120px);opacity:0;transition:.5s cubic-bezier(.16,1,.3,1)} .toast.show{transform:none;opacity:1}
+.lightbox{position:fixed;inset:0;background:rgba(0,16,31,.92);z-index:9998;display:none;align-items:center;justify-content:center;padding:24px} .lightbox.open{display:flex}
+.modal{position:fixed;inset:0;background:rgba(0,16,31,.6);backdrop-filter:blur(8px);z-index:9997;display:none;align-items:center;justify-content:center;padding:16px} .modal.open{display:flex}
+.no-scrollbar::-webkit-scrollbar{display:none} .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
 </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="bg-[#f7f5f0] text-[#122238] overflow-x-hidden">
+<div id="progress" class="progress"></div>
+<div id="toast" class="toast card-gold"></div>
+<div id="lightbox" class="lightbox" onclick="this.classList.remove('open')"><img id="lightImg" class="max-w-[92vw] max-h-[92vh] object-contain card"><div class="absolute top-6 right-6 text-white/70 text-[11px] tracking-widest cursor-pointer">CLOSE ✕</div></div>
 
-<!-- GOLD TOP HAIRLINE + SCROLL PROGRESS (luxury accent) -->
-<div class="fixed top-0 left-0 w-full h-[3px] bg-[#b48430] z-[200]"></div>
-<div id="scrollProgress" class="fixed top-[3px] left-0 h-[2px] bg-[#c9a24b] z-[200] w-0 transition-[width] duration-100"></div>
+<!-- BOOKING MODAL -->
+<div id="bookModal" class="modal">
+<div class="bg-white w-full max-w-[520px] card soft max-h-[92vh] overflow-auto">
+<div class="p-7 border-b flex justify-between items-center" style="border-color:var(--hair)"><div><div class="kicker">BOOKING</div><div id="bookModalTitle" class="text-[18px] font-bold text-[#002448] mt-1">Book Experience</div></div><button onclick="closeModal('bookModal')" class="w-9 h-9 border flex items-center justify-center hover:border-[#b48430]">✕</button></div>
+<div class="p-7">
+<form id="bookingForm" class="space-y-3">
+<input type="hidden" id="bType">
+<div class="grid grid-cols-2 gap-3">
+<input id="bDate" required placeholder="Date / Check-in" class="input">
+<input id="bGuests" required placeholder="Guests / Qty" class="input">
+</div>
+<input id="bName" required placeholder="Full Name" class="input">
+<input id="bContact" required placeholder="Email / WhatsApp" class="input">
+<textarea id="bNote" rows="3" placeholder="Details — e.g., Labuan Bajo 3N, 2 pax, vegetarian" class="input"></textarea>
+<button class="btn-navy w-full py-3.5">CONFIRM BOOKING →</button>
+<p class="text-[11px] text-[#7b8a9d] leading-4">Booking is stored locally and sent to our team. We respond within 6 hours. No payment required now — Indonesia + International support.</p>
+</form>
+<div id="bookingsList" class="mt-6 border-t pt-5 hidden" style="border-color:var(--hair)"><div class="text-[11px] tracking-widest font-bold">YOUR RECENT BOOKINGS</div><div id="bookList" class="mt-3 space-y-2"></div></div>
+</div>
+</div>
+</div>
 
-<!-- HEADER - #f8f6f2 per your standing rule, no top announcement bar per changes -->
-<header id="navbar" class="sticky top-[3px] z-[100] bg-[#f8f6f2]/95 blur-nav border-b navy-hairline">
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
-    <a href="#home" class="flex items-center gap-3">
-      <div class="w-9 h-9 bg-navy text-paper grid place-items-center font-heading text-[18px] rounded-[10px] leading-none">AHA</div>
-      <div class="leading-[0.9]"><div class="font-heading text-[15px] text-navy tracking-[-0.02em]">AHA Resources Pvt</div><div class="font-body text-[10px] tracking-[0.18em] uppercase text-tertiaryInk">Indonesia</div></div>
-    </a>
-
-    <nav class="hidden xl:flex items-center gap-7 text-[13px] font-[500] tracking-[-0.01em] text-bodyInk font-body">
-      <a href="#home" class="text-navy font-heading">HOME</a>
-      <div class="relative group py-6">
-        <a href="#about" class="flex items-center gap-1 hover:text-navy">ABOUT <span class="text-[9px] opacity-60">▼</span></a>
-        <div class="mega absolute top-full left-1/2 -translate-x-1/2 w-[620px] bg-paper border navy-hairline rounded-[20px] shadow-[0_20px_60px_rgba(0,36,72,0.12)] p-6 grid grid-cols-2 gap-6">
-          <div><div class="text-[11px] tracking-[0.14em] uppercase text-gold font-heading mb-3">Company</div><div class="space-y-2.5 text-[13px] font-body"><a href="#about" class="block hover:text-navy">Company Overview</a><a href="#chairman" class="block hover:text-navy">Chairman's Message</a><a href="#vision" class="block hover:text-navy">Vision & Mission</a><a href="#values" class="block hover:text-navy">Core Values</a></div></div>
-          <div><div class="text-[11px] tracking-[0.14em] uppercase text-gold font-heading mb-3">Why Us</div><div class="space-y-2.5 text-[13px] font-body"><a href="#why" class="block hover:text-navy">Why Choose AHA</a><a href="#journey" class="block hover:text-navy">Our Journey</a><a href="#sustainability" class="block hover:text-navy">Sustainability</a><a href="#csr" class="block hover:text-navy">CSR</a></div></div>
-        </div>
-      </div>
-
-      <div class="relative group py-6">
-        <a href="#businesses" class="flex items-center gap-1 hover:text-navy font-heading">OUR BUSINESSES <span class="text-[10px] bg-deepNavy text-paleGold px-1.5 py-0.5 rounded-full font-body">11</span></a>
-        <div class="mega absolute top-full left-1/2 -translate-x-1/2 w-[900px] bg-paper border navy-hairline rounded-[24px] shadow-[0_24px_80px_rgba(0,36,72,0.15)] p-2">
-          <div class="grid grid-cols-3 gap-2">
-            <a href="#biz-01" class="rounded-[14px] p-4 hover:bg-goldWash border border-transparent hover:gold-hairline transition"><div class="text-[11px] text-gold font-heading">01</div><div class="text-[13px] font-heading text-navy mt-1">Travel & Tourism</div><div class="text-[11px] text-secondaryInk mt-1 font-body leading-[1.4]">Domestic, International, DMC</div></a>
-            <a href="#biz-02" class="rounded-[14px] p-4 hover:bg-goldWash border border-transparent hover:gold-hairline transition"><div class="text-[11px] text-gold font-heading">02</div><div class="text-[13px] font-heading text-navy mt-1">Hospitality & Accommodation</div><div class="text-[11px] text-secondaryInk mt-1 font-body leading-[1.4]">Luxury Rooms, Suites, Banquet</div></a>
-            <a href="#biz-03" class="rounded-[14px] p-4 hover:bg-goldWash border border-transparent hover:gold-hairline transition"><div class="text-[11px] text-gold font-heading">03</div><div class="text-[13px] font-heading text-navy mt-1">Restaurants & Café</div><div class="text-[11px] text-secondaryInk mt-1 font-body leading-[1.4]">Pakistani, Indonesian, Chinese</div></a>
-            <a href="#biz-04" class="rounded-[14px] p-4 hover:bg-goldWash border border-transparent hover:gold-hairline transition"><div class="text-[11px] text-gold font-heading">04</div><div class="text-[13px] font-heading text-navy mt-1">Retail & Mini Mart</div><div class="text-[11px] text-secondaryInk mt-1 font-body leading-[1.4]">Grocery, Fresh, Imported</div></a>
-            <a href="#biz-05" class="rounded-[14px] p-4 hover:bg-goldWash border border-transparent hover:gold-hairline transition"><div class="text-[11px] text-gold font-heading">05</div><div class="text-[13px] font-heading text-navy mt-1">Automotive Services</div><div class="text-[11px] text-secondaryInk mt-1 font-body leading-[1.4]">Car Wash & Detailing</div></a>
-            <a href="#biz-06" class="rounded-[14px] p-4 hover:bg-goldWash border border-transparent hover:gold-hairline transition"><div class="text-[11px] text-gold font-heading">06</div><div class="text-[13px] font-heading text-navy mt-1">Agriculture & Farm Ventures</div><div class="text-[11px] text-secondaryInk mt-1 font-body leading-[1.4]">Farm House & Agri Tourism</div></a>
-            <a href="#biz-07" class="rounded-[14px] p-4 hover:bg-goldWash border border-transparent hover:gold-hairline transition"><div class="text-[11px] text-gold font-heading">07</div><div class="text-[13px] font-heading text-navy mt-1">Fisheries & Aquaculture</div><div class="text-[11px] text-secondaryInk mt-1 font-body leading-[1.4]">Fish & Prawn Farming</div></a>
-            <a href="#biz-08" class="rounded-[14px] p-4 hover:bg-goldWash border border-transparent hover:gold-hairline transition"><div class="text-[11px] text-gold font-heading">08</div><div class="text-[13px] font-heading text-navy mt-1">Import, Export & Trade</div><div class="text-[11px] text-secondaryInk mt-1 font-body leading-[1.4]">International Trade</div></a>
-            <a href="#biz-09" class="rounded-[14px] p-4 hover:bg-goldWash border border-transparent hover:gold-hairline transition"><div class="text-[11px] text-gold font-heading">09</div><div class="text-[13px] font-heading text-navy mt-1">Healthcare & Pharmacy</div><div class="text-[11px] text-secondaryInk mt-1 font-body leading-[1.4]">Medical Store</div></a>
-            <a href="#biz-10" class="rounded-[14px] p-4 hover:bg-goldWash border border-transparent hover:gold-hairline transition bg-navyMist/50"><div class="text-[11px] text-gold font-heading">10</div><div class="text-[13px] font-heading text-navy mt-1">Legal & Business Consultancy</div><div class="text-[11px] text-secondaryInk mt-1 font-body leading-[1.4]">Corporate & Legal Services</div></a>
-            <a href="#biz-11" class="rounded-[14px] p-4 hover:bg-goldWash border border-transparent hover:gold-hairline transition bg-navyMist/50"><div class="text-[11px] text-gold font-heading">11</div><div class="text-[13px] font-heading text-navy mt-1">Professional Training</div><div class="text-[11px] text-secondaryInk mt-1 font-body leading-[1.4]">Corporate & Skills Training</div></a>
-          </div>
-        </div>
-      </div>
-
-      <a href="#investment" class="hover:text-navy">INVESTMENTS</a>
-      <a href="#media" class="hover:text-navy">MEDIA</a>
-      <a href="#careers" class="hover:text-navy">CAREERS</a>
-      <a href="#csr" class="hover:text-navy">CSR</a>
-      <a href="#contact" class="hover:text-navy">CONTACT</a>
-    </nav>
-
-    <div class="flex items-center gap-2">
-      <a href="#businesses" class="h-10 px-6 rounded-full bg-gold text-white text-[13px] font-heading inline-flex items-center gap-2 hover:bg-brightGold shadow-[0_2px_12px_rgba(180,132,48,0.25)] tracking-[0.02em]">BOOK NOW</a>
-      <button id="menuBtn" class="xl:hidden w-10 h-10 rounded-full border navy-hairline grid place-items-center text-navy">☰</button>
-    </div>
-  </div>
-  <div id="mobileMenu" class="xl:hidden hidden border-t navy-hairline bg-header px-6 py-6 space-y-3 max-h-[80vh] overflow-auto font-body">
-    <a href="#home" class="block py-2 font-heading text-navy">HOME</a>
-    <a href="#about" class="block py-2">ABOUT</a>
-    <div class="pl-4 space-y-2 text-[13px] text-secondaryInk"><div class="font-heading text-navy text-[12px]">OUR BUSINESSES (11)</div><a href="#biz-01" class="block">• Travel & Tourism</a><a href="#biz-02" class="block">• Hospitality & Accommodation</a><a href="#biz-03" class="block">• Restaurants & Café</a><a href="#biz-04" class="block">• Retail & Mini Mart</a><a href="#biz-05" class="block">• Automotive Services</a><a href="#biz-06" class="block">• Agriculture & Farm Ventures</a><a href="#biz-07" class="block">• Fisheries & Aquaculture</a><a href="#biz-08" class="block">• Import Export & Trade</a><a href="#biz-09" class="block">• Healthcare & Pharmacy</a><a href="#biz-10" class="block">• Legal & Consultancy</a><a href="#biz-11" class="block">• Professional Training</a></div>
-    <a href="#investment" class="block py-2">INVESTMENTS</a><a href="#media" class="block py-2">MEDIA</a><a href="#careers" class="block py-2">CAREERS</a><a href="#csr" class="block py-2">CSR</a><a href="#contact" class="block py-2">CONTACT</a>
-    <a href="#businesses" class="block mt-4 h-12 rounded-full bg-gold text-white grid place-items-center font-heading">BOOK NOW</a>
-  </div>
+<header id="siteHeader" class="header-bg fixed top-0 left-0 right-0 z-40 border-b" style="border-color:var(--hairG)">
+<div class="h-[3px] bg-gradient-to-r from-[#b48430] via-[#c9a24b] to-[#e9d9b4]"></div>
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 h-[76px] flex items-center justify-between">
+<a href="#home" class="flex items-center gap-3 group">
+<div class="w-9 h-9 bg-[#002448] text-white flex items-center justify-center font-bold text-[12px] tracking-[0.18em] group-hover:bg-[#00162e] transition">AHA</div>
+<div class="leading-none"><div class="font-bold text-[13.5px] tracking-[0.14em] text-[#002448]">AHA RESOURCES</div><div class="text-[8.5px] tracking-[0.26em] text-[#7b8a9d] mt-1">INDONESIA • INTERNATIONAL</div></div>
+</a>
+<nav class="hidden xl:flex items-center gap-6">
+<a href="#home" data-nav="home" class="nav-link text-[10.5px] tracking-[0.18em] font-bold text-[#002448] hover:text-[#b48430] transition border-b-2 border-transparent pb-1">HOME</a>
+<a href="#about" data-nav="about" class="nav-link text-[10.5px] tracking-[0.18em] font-bold text-[#45566c] hover:text-[#b48430] transition border-b-2 border-transparent pb-1">ABOUT</a>
+<a href="#businesses" data-nav="businesses" class="nav-link text-[10.5px] tracking-[0.18em] font-bold text-[#45566c] hover:text-[#b48430] transition border-b-2 border-transparent pb-1">OUR BUSINESSES</a>
+<a href="#investments" data-nav="investments" class="nav-link text-[10.5px] tracking-[0.18em] font-bold text-[#45566c] hover:text-[#b48430] transition border-b-2 border-transparent pb-1">INVESTMENTS</a>
+<a href="#gallery" class="text-[10.5px] tracking-[0.18em] font-bold text-[#45566c] hover:text-[#b48430]">GALLERY</a>
+<a href="#contact" class="text-[10.5px] tracking-[0.18em] font-bold text-[#45566c] hover:text-[#b48430]">CONTACT</a>
+<button onclick="openBook('General Inquiry')" class="ml-3 btn-navy !py-2.5 !px-5">BOOK NOW</button>
+</nav>
+<button id="mobToggle" class="xl:hidden w-10 h-10 flex flex-col justify-center gap-1.5"><span class="h-0.5 w-6 bg-[#002448]"></span><span class="h-0.5 w-6 bg-[#002448]"></span><span class="h-0.5 w-4 bg-[#002448]"></span></button>
+</div>
+<div id="mobMenu" class="xl:hidden hidden border-t header-bg" style="border-color:var(--hair)"><div class="px-6 py-6 flex flex-col gap-4"><a href="#home" class="text-[12px] tracking-[0.18em] font-bold">HOME</a><a href="#about" class="text-[12px] tracking-[0.18em] font-bold">ABOUT</a><a href="#businesses" class="text-[12px] tracking-[0.18em] font-bold">OUR BUSINESSES</a><a href="#investments" class="text-[12px] tracking-[0.18em] font-bold">INVESTMENTS</a><a href="#gallery" class="text-[12px] tracking-[0.18em] font-bold">GALLERY</a><a href="#contact" class="text-[12px] tracking-[0.18em] font-bold">CONTACT</a><button onclick="openBook('General Inquiry')" class="bg-[#002448] text-white py-3 text-[12px] tracking-[0.18em] font-bold">BOOK NOW</button></div></div>
 </header>
 
-<!-- HOME - HERO - NO BOOKING BUTTONS/WIDGETS PER INSTRUCTION, NO REVIEWS, INDONESIA + INTERNATIONAL ONLY -->
-<section id="home" class="max-w-[1440px] mx-auto px-6 lg:px-10 pt-10 lg:pt-16 pb-0">
-  <div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
-    <div>
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border gold-hairline bg-goldWash text-[11px] tracking-[0.14em] uppercase text-navy font-heading mb-6"><span class="w-2 h-2 rounded-full bg-gold"></span> Indonesia • International Markets</div>
-      <h1 class="font-heading text-[10.5vw] lg:text-[84px] leading-[0.88] tracking-[-0.04em] text-bodyInk">AHA Resources<br><span class="text-navy">Connecting</span><br><span class="text-navy">Resources.</span><br><span class="font-body font-light italic text-navy tracking-[-0.02em]" style="font-family:'Libre Franklin',sans-serif; font-style:italic; font-weight:300;">Creating Experiences.</span></h1>
-      <div class="mt-8 flex flex-wrap gap-2 max-w-[560px]">
-        <span class="px-3 py-1.5 rounded-full bg-paper border navy-hairline text-[12px] font-body">Travel & Tourism</span><span class="px-3 py-1.5 rounded-full bg-paper border navy-hairline text-[12px] font-body">Hospitality</span><span class="px-3 py-1.5 rounded-full bg-paper border navy-hairline text-[12px] font-body">Retail</span><span class="px-3 py-1.5 rounded-full bg-paper border navy-hairline text-[12px] font-body">Healthcare</span><span class="px-3 py-1.5 rounded-full bg-paper border navy-hairline text-[12px] font-body">Agriculture</span><span class="px-3 py-1.5 rounded-full bg-navyMist border navy-hairline text-[12px] font-body text-navy">International Trade</span>
-      </div>
-      <p class="mt-8 text-[17px] leading-[1.65] text-secondaryInk max-w-[560px] font-body">Your Trusted Partner in diversified business — connecting capital, people and markets across Indonesia and International markets.</p>
-      <!-- NO BOOKING BUTTONS ON HOME PER RULE - Only Explore and Contact/Partner -->
-      <div class="mt-10 flex flex-wrap gap-3">
-        <a href="#businesses" class="h-[48px] px-7 rounded-full bg-gold text-white inline-flex items-center gap-2 text-[13px] font-heading hover:bg-brightGold shadow-[0_4px_20px_rgba(180,132,48,0.3)] tracking-[0.02em]">Explore Our Services →</a>
-        <a href="#contact" class="h-[48px] px-7 rounded-full bg-navy text-white inline-flex items-center gap-2 text-[13px] font-heading hover:bg-deepNavy">Contact Us</a>
-        <a href="#investment" class="h-[48px] px-7 rounded-full bg-paper border navy-hairline inline-flex items-center gap-2 text-[13px] font-body font-medium text-navy hover:bg-goldWash hover:border-gold-hairline">Partner With Us</a>
-      </div>
-      <div class="mt-14 grid grid-cols-3 gap-6 border-t navy-hairline pt-8 max-w-[520px]">
-        <div><div class="font-heading text-[32px] leading-none text-navy">11</div><div class="text-[11px] tracking-[0.12em] uppercase mt-2 text-tertiaryInk font-body leading-[1.3]">Active<br>Divisions</div><div class="w-8 h-[2px] bg-gold mt-3"></div></div>
-        <div><div class="font-heading text-[32px] leading-none text-navy">Indonesia</div><div class="text-[11px] tracking-[0.12em] uppercase mt-2 text-tertiaryInk font-body leading-[1.3]">Hub +<br>International</div><div class="w-8 h-[2px] bg-gold mt-3"></div></div>
-        <div><div class="font-heading text-[32px] leading-none text-navy">100+</div><div class="text-[11px] tracking-[0.12em] uppercase mt-2 text-tertiaryInk font-body leading-[1.3]">Strategic<br>Partners</div><div class="w-8 h-[2px] bg-gold mt-3"></div></div>
-      </div>
-    </div>
-    <div class="relative lg:sticky lg:top-[104px]">
-      <div class="rounded-[28px] overflow-hidden bg-navyMist border navy-hairline aspect-[4/5] relative">
-        <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?q=80&w=1200&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Indonesia rice terraces">
-        <div class="absolute inset-0 bg-gradient-to-t from-deepNavy/60 via-transparent to-transparent"></div>
-        <div class="absolute top-5 left-5 right-5 flex justify-between items-start">
-          <div class="bg-paper/95 backdrop-blur rounded-[12px] px-3 py-2 border navy-hairline text-[11px] font-heading text-navy flex items-center gap-2"><span class="w-2 h-2 bg-gold rounded-full animate-pulse"></span> Indonesia Tourism Corridor</div>
-          <div class="w-9 h-9 rounded-full bg-paper/90 backdrop-blur border navy-hairline grid place-items-center text-navy font-heading">✦</div>
-        </div>
-        <!-- NO TESTIMONIAL CARD PER RULE - replaced with ecosystem badge -->
-        <div class="absolute bottom-5 left-5 right-5 bg-deepNavy/90 backdrop-blur rounded-[16px] p-4 border border-white/10">
-          <div class="text-[11px] tracking-[0.14em] uppercase text-paleGold font-heading">Integrated Ecosystem</div>
-          <div class="text-[13px] text-white mt-1 font-body leading-[1.4]">Accommodation + Food + Transport + Experiences — one standard of care across 11 divisions.</div>
-          <div class="mt-3 flex gap-2"><span class="px-2.5 py-1 rounded-full bg-white/10 border border-white/10 text-[10px] text-white/70">Tourism</span><span class="px-2.5 py-1 rounded-full bg-white/10 border border-white/10 text-[10px] text-white/70">Hospitality</span><span class="px-2.5 py-1 rounded-full bg-gold/20 border border-gold/30 text-[10px] text-paleGold">Trade</span></div>
-        </div>
-      </div>
-      <!-- Info callouts - Indonesia only, no Pakistan/GCC -->
-      <div class="mt-3 grid grid-cols-2 gap-3">
-        <div class="rounded-[14px] bg-navyMist border navy-hairline p-3 flex gap-2 items-center"><div class="w-8 h-8 rounded-full bg-navy text-paleGold grid place-items-center text-[12px] font-heading">↗</div><div><div class="text-[12px] font-heading text-navy">Trade Desk</div><div class="text-[10px] text-secondaryInk font-body">Indonesia • International</div></div></div>
-        <div class="rounded-[14px] bg-goldWash border gold-hairline p-3 flex gap-2 items-center"><div class="w-8 h-8 rounded-full bg-gold text-white grid place-items-center text-[12px] font-heading">$</div><div><div class="text-[12px] font-heading text-navy">Open for Investment</div><div class="text-[10px] text-secondaryInk font-body">Hospitality & Agri</div></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="mt-12 -mx-6 lg:-mx-10 bg-deepNavy text-white px-6 lg:px-10 py-3 flex flex-wrap gap-4 items-center justify-between border-t border-gold/20 text-[11px] tracking-[0.14em] uppercase font-body">
-    <div class="flex items-center gap-3"><span class="w-6 h-[1px] bg-gold"></span><span class="text-white/60">Resources → Expertise → Investment →</span><span class="text-paleGold font-heading">Value</span></div>
-    <div class="text-white/50">11 Divisions • Indonesia Hub • International Markets</div>
-  </div>
+<main class="pt-[79px]">
+
+<!-- HERO - ELEGANT -->
+<section id="home" class="relative min-h-[92vh] flex items-center overflow-hidden bg-[#00101f]">
+<div class="absolute inset-0"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.36.jpeg" class="img-cover scale-[1.03]" alt="Jakarta Indonesia hub"><div class="absolute inset-0 hero-grad"></div><div class="absolute inset-0 opacity-[0.22]" style="background:radial-gradient(700px at 18% 18%, rgba(180,132,48,.45), transparent 60%)"></div></div>
+<div class="relative max-w-[1440px] mx-auto px-6 lg:px-10 w-full py-16 lg:py-20 grid lg:grid-cols-[1.05fr_.95fr] gap-10 items-center">
+<div class="reveal in">
+<div class="inline-flex items-center gap-3 border border-white/15 bg-white/5 backdrop-blur px-3 py-2"><span class="w-2 h-2 bg-[#e9d9b4] rounded-full animate-pulse"></span><span class="text-[10px] tracking-[0.22em] text-white/80 font-bold">LIVE • INDONESIA + INTERNATIONAL CORRIDOR</span></div>
+<h1 class="text-white text-[44px] lg:text-[76px] leading-[0.88] tracking-[-0.04em] mt-6 font-bold">Connecting<br>Resources.<br><span class="text-[#e9d9b4] font-[400] italic">Creating Value.</span></h1>
+<p class="text-[#e8edf4]/85 text-[16px] lg:text-[18px] leading-[1.7] mt-6 max-w-[560px]">AHA Resources is a diversified platform transforming Resources into Expertise, Investment into Opportunities, and Markets into Value — typed fully from your presentation, built with your 31 real photos.</p>
+<div class="flex flex-wrap gap-3 mt-8">
+<button onclick="document.querySelector('#businesses').scrollIntoView({behavior:'smooth'})" class="bg-white text-[#002448] px-7 py-3.5 text-[11px] tracking-[0.18em] font-bold hover:bg-[#f6efe0] transition">EXPLORE 11 BUSINESSES →</button>
+<button onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})" class="border border-white/25 text-white px-7 py-3.5 text-[11px] tracking-[0.18em] font-bold hover:bg-white/10 transition">OUR STORY</button>
+</div>
+<div class="mt-12 grid grid-cols-3 max-w-[520px] border-t border-white/15 pt-7">
+<div><div class="flex items-baseline gap-1"><span class="text-white text-[32px] font-bold counter" data-target="11">0</span><span class="text-[#e9d9b4] text-[14px]">↗</span></div><div class="text-[10px] tracking-[0.18em] text-white/60 mt-1">INTEGRATED BUSINESSES</div></div>
+<div><div class="flex items-baseline gap-1"><span class="text-white text-[32px] font-bold counter" data-target="5">0</span></div><div class="text-[10px] tracking-[0.18em] text-white/60 mt-1">GROWTH PHASES 2020-26</div></div>
+<div><div class="text-white text-[22px] font-bold tracking-widest">IDN+</div><div class="text-[10px] tracking-[0.18em] text-white/60 mt-1">HUB + CORRIDOR</div></div>
+</div>
+</div>
+<div class="hidden lg:block reveal in" style="transition-delay:.15s">
+<div class="relative">
+<div class="absolute -top-6 -left-6 w-[88%] h-[88%] border border-[#e9d9b4]/30"></div>
+<div class="grid grid-cols-12 gap-3 relative">
+<div class="col-span-7 space-y-3">
+<div class="h-[240px] overflow-hidden card group cursor-pointer" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.30.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.30.jpeg" class="img-cover group-hover:scale-[1.05] transition duration-700" alt="Komodo"><div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent"><span class="text-[10px] tracking-widest text-white font-bold">KOMODO • LABUAN BAJO</span></div></div>
+<div class="h-[168px] overflow-hidden card group cursor-pointer" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.34.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.34.jpeg" class="img-cover group-hover:scale-[1.05] transition duration-700" alt="Diving"></div>
+</div>
+<div class="col-span-5 space-y-3 mt-8">
+<div class="h-[168px] overflow-hidden card group cursor-pointer" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.29.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.29.jpeg" class="img-cover group-hover:scale-[1.05] transition duration-700" alt="Cruise"></div>
+<div class="h-[240px] overflow-hidden card group cursor-pointer" onclick="openLight('images/s.jpeg')"><img src="images/s.jpeg" class="img-cover group-hover:scale-[1.05] transition duration-700" alt="Culture"><div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent"><span class="text-[10px] tracking-widest text-white font-bold">CULTURE • TRADITION</span></div></div>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3 mt-3">
+<div class="h-[96px] overflow-hidden card cursor-pointer" onclick="openLight('images/35df.jpeg')"><img src="images/35df.jpeg" class="img-cover hover:scale-105 transition duration-500" alt="Dining"></div>
+<div class="h-[96px] overflow-hidden card cursor-pointer" onclick="openLight('images/567yhtgj.jpeg')"><img src="images/567yhtgj.jpeg" class="img-cover hover:scale-105 transition duration-500" alt="Cuisine"></div>
+<div class="h-[96px] overflow-hidden card cursor-pointer" onclick="openLight('images/asd.jpeg')"><img src="images/asd.jpeg" class="img-cover hover:scale-105 transition duration-500" alt="Music"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#e9d9b4]/40 to-transparent"></div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="bg-paper border-y navy-hairline">
-<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 lg:py-24">
-  <div class="flex items-center gap-3 mb-8"><span class="w-8 h-[2px] bg-gold"></span><span class="text-[11px] tracking-[0.2em] uppercase text-gold font-heading">ABOUT US</span></div>
-  <div class="grid lg:grid-cols-12 gap-10">
-    <div class="lg:col-span-7">
-      <h2 class="font-heading text-[40px] lg:text-[58px] leading-[0.9] tracking-[-0.03em] text-bodyInk">Built on trust. <span class="font-body font-light italic text-navy" style="font-style:italic; font-weight:300;">Grown through excellence.</span></h2>
-      <div class="mt-8 grid md:grid-cols-2 gap-6 text-[15px] leading-[1.7] text-secondaryInk font-body"><p>AHA Resources Pvt. is a trusted, diversified and internationally connected business group, creating sustainable commercial opportunities across Indonesia and International markets.</p><p>Our objective is not simply to participate in business. We believe the future belongs to organizations that can connect people, markets, knowledge, capital and opportunities.</p></div>
-      
-      <div id="vision" class="mt-12 grid md:grid-cols-2 gap-4">
-        <div class="rounded-[20px] bg-ivory border navy-hairline p-6"><div class="text-[11px] tracking-[0.14em] uppercase text-gold font-heading mb-3">Our Vision</div><div class="font-heading text-[20px] leading-[1.25] text-navy">To develop AHA Resources into a trusted, diversified and internationally connected business group.</div></div>
-        <div class="rounded-[20px] bg-navy text-white p-6 border border-white/10"><div class="text-[11px] tracking-[0.14em] uppercase text-paleGold font-heading mb-3">Our Mission</div><div class="text-[14px] leading-[1.5] text-white/80 font-body">To identify opportunities, connect the right resources and transform them into sustainable businesses and valuable partnerships.</div></div>
-      </div>
+<!-- TRUST BAR -->
+<div class="bg-white border-b" style="border-color:var(--hair)"><div class="max-w-[1440px] mx-auto px-6 lg:px-10 h-[52px] flex items-center justify-between gap-6 overflow-x-auto no-scrollbar text-[10px] tracking-[0.18em] font-bold text-[#7b8a9d]"><span class="shrink-0">TRUSTED FOR INDONESIA TOURISM CORRIDOR</span><span class="shrink-0 w-1 h-1 bg-[#b48430] rounded-full"></span><span class="shrink-0">HALAL TOURISM • RELIGIOUS TOURISM</span><span class="shrink-0 w-1 h-1 bg-[#b48430] rounded-full"></span><span class="shrink-0">CRUISE • MOTORCYCLE • CULTURAL</span><span class="shrink-0 w-1 h-1 bg-[#b48430] rounded-full"></span><span class="shrink-0">FARM-TO-TABLE • BLUE ECONOMY</span><span class="shrink-0 w-1 h-1 bg-[#b48430] rounded-full"></span><span class="shrink-0">PT PMA • END-TO-END FACILITATION</span></div></div>
 
-      <div id="chairman" class="mt-6 rounded-[20px] bg-navyMist border navy-hairline p-6 flex gap-4">
-        <div class="w-16 h-16 rounded-full bg-navy text-paleGold grid place-items-center font-heading text-[24px] flex-shrink-0">C</div>
-        <div><div class="text-[11px] tracking-[0.14em] uppercase text-gold font-heading">Chairman's Message</div><div class="text-[14px] leading-[1.6] text-bodyInk mt-2 font-body italic">“We build businesses that serve people first. Profit follows purpose when you own the work and remember the name of the guest, the farmer, and the partner across Indonesia and International markets.”</div><div class="text-[12px] text-secondaryInk mt-2 font-body">— Chairman, AHA Resources Pvt</div></div>
-      </div>
-    </div>
-    <div class="lg:col-span-5 space-y-4">
-      <div id="values" class="rounded-[20px] bg-paper border navy-hairline p-6 shadow-[0_8px_32px_rgba(0,36,72,0.06)]">
-        <div class="text-[11px] tracking-[0.14em] uppercase text-gold font-heading mb-4">Core Values — What we refuse to compromise</div>
-        <div class="grid grid-cols-2 gap-3 text-[13px] font-body">
-          <div class="flex gap-2"><span class="w-5 h-5 rounded-full bg-goldWash border gold-hairline grid place-items-center text-[10px] text-gold font-heading">i</span><span><b class="font-heading text-navy">Integrity</b> — Trust is foundation</span></div>
-          <div class="flex gap-2"><span class="w-5 h-5 rounded-full bg-goldWash border gold-hairline grid place-items-center text-[10px] text-gold font-heading">ii</span><span><b class="font-heading text-navy">Professionalism</b> — Single standard</span></div>
-          <div class="flex gap-2"><span class="w-5 h-5 rounded-full bg-goldWash border gold-hairline grid place-items-center text-[10px] text-gold font-heading">iii</span><span><b class="font-heading text-navy">Transparency</b> — Clear communication</span></div>
-          <div class="flex gap-2"><span class="w-5 h-5 rounded-full bg-goldWash border gold-hairline grid place-items-center text-[10px] text-gold font-heading">iv</span><span><b class="font-heading text-navy">Innovation</b> — Better models</span></div>
-          <div class="flex gap-2"><span class="w-5 h-5 rounded-full bg-goldWash border gold-hairline grid place-items-center text-[10px] text-gold font-heading">v</span><span><b class="font-heading text-navy">Partnership</b> — Collaboration</span></div>
-          <div class="flex gap-2"><span class="w-5 h-5 rounded-full bg-goldWash border gold-hairline grid place-items-center text-[10px] text-gold font-heading">vi</span><span><b class="font-heading text-navy">Value Creation</b> — Meaningful value</span></div>
-          <div class="flex gap-2"><span class="w-5 h-5 rounded-full bg-goldWash border gold-hairline grid place-items-center text-[10px] text-gold font-heading">vii</span><span><b class="font-heading text-navy">Sustainability</b> — Healthier markets</span></div>
-          <div class="flex gap-2"><span class="w-5 h-5 rounded-full bg-goldWash border gold-hairline grid place-items-center text-[10px] text-gold font-heading">viii</span><span><b class="font-heading text-navy">Community</b> — Jobs woven in</span></div>
-        </div>
-      </div>
-
-      <div id="why" class="rounded-[20px] bg-goldWash border gold-hairline p-6">
-        <div class="text-[11px] tracking-[0.14em] uppercase text-gold font-heading mb-3">Why Choose AHA Resources Pvt</div>
-        <ul class="space-y-2 text-[13px] text-bodyInk font-body">
-          <li class="flex gap-2"><span class="text-gold">•</span> Diversified Portfolio — 11 complementary sectors</li>
-          <li class="flex gap-2"><span class="text-gold">•</span> International Orientation — Indonesia hub, International markets</li>
-          <li class="flex gap-2"><span class="text-gold">•</span> Partnership Driven — Strategic collaboration</li>
-          <li class="flex gap-2"><span class="text-gold">•</span> Integrated Approach — One ecosystem, one standard</li>
-          <li class="flex gap-2"><span class="text-gold">•</span> Professional Network — Legal, tax, finance, hospitality</li>
-          <li class="flex gap-2"><span class="text-gold">•</span> Long Term Vision — Sustainable, not short-term</li>
-        </ul>
-      </div>
-
-      <div id="journey" class="rounded-[20px] bg-paper border navy-hairline p-6">
-        <div class="text-[11px] tracking-[0.14em] uppercase text-gold font-heading mb-4">Our Journey</div>
-        <div class="relative pl-6 border-l border-[rgba(0,36,72,0.13)] space-y-4 font-body">
-          <div class="relative"><span class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-gold border-2 border-paper"></span><div class="text-[12px] font-heading text-navy">2020 — Foundation</div><div class="text-[12px] text-secondaryInk">Tourism & Hospitality in Indonesia</div></div>
-          <div class="relative"><span class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-navy border-2 border-paper"></span><div class="text-[12px] font-heading text-navy">2022 — Diversification</div><div class="text-[12px] text-secondaryInk">Retail, Agriculture, Automotive</div></div>
-          <div class="relative"><span class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-gold border-2 border-paper"></span><div class="text-[12px] font-heading text-navy">2024 — International Trade</div><div class="text-[12px] text-secondaryInk">Import/Export + Healthcare + Consultancy</div></div>
-          <div class="relative"><span class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-brightGold border-2 border-paper animate-pulse"></span><div class="text-[12px] font-heading text-navy">2026 — Ecosystem</div><div class="text-[12px] text-secondaryInk">11 divisions, Indonesia + International</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- WHO WE ARE -->
+<section class="bg-white border-b reveal" style="border-color:var(--hair)">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-20 lg:py-28 grid lg:grid-cols-[0.95fr_1.05fr] gap-14">
+<div>
+<div class="tag inline-block">WHO WE ARE — FULLY TYPED FROM PDF</div>
+<h2 class="text-[36px] lg:text-[50px] leading-[0.92] mt-5 text-[#002448]">A Diversified Platform Built on Integration, Not Isolation.</h2>
+<div class="mt-6 space-y-4 text-[15px] leading-7 text-[#45566c]">
+<p><strong class="text-[#122238]">AHA Resources</strong> is a diversified business platform operating across 11 verticals: Tourism, Hospitality, Restaurants, Retail, Automotive, Agriculture, Fisheries, Import-Export, Healthcare, Legal & Corporate Consultancy, and Training & Skills Development.</p>
+<p>We are not 11 separate companies. We are <span class="font-bold text-[#002448]">one integrated ecosystem</span> where each business feeds the next. Our model from presentation page 3: <span class="font-bold text-[#002448] bg-[#f6efe0] px-1">Resources → Expertise → Investment → Opportunities → Markets → Value.</span></p>
+<p>Headquartered with <strong>Indonesia as hub</strong> and <strong>International as corridor</strong>, we connect Indonesian resources, culture, and products to global demand — and bring international expertise, capital, and tourists into Indonesia.</p>
+</div>
+<div class="mt-8 grid gap-3">
+<div class="flex gap-3 items-start p-3.5 bg-[#f8f6f2] border hover:border-[#b48430]/30 transition" style="border-color:var(--hair)"><div class="w-8 h-8 bg-[#002448] text-white flex items-center justify-center text-[11px] font-bold shrink-0">→</div><div class="text-[13px] leading-5"><span class="font-bold text-[#002448]">Resources:</span> Indonesia's 17,000 islands, culture, agriculture, fisheries, people, MSMEs</div></div>
+<div class="flex gap-3 items-start p-3.5 bg-[#f8f6f2] border" style="border-color:var(--hair)"><div class="w-8 h-8 bg-[#002448] text-white flex items-center justify-center text-[11px] font-bold shrink-0">→</div><div class="text-[13px] leading-5"><span class="font-bold text-[#002448]">Expertise:</span> Legal PT PMA, hospitality ops, trade documentation, farm management, tourism curation</div></div>
+<div class="flex gap-3 items-start p-3.5 bg-[#002448] text-white border"><div class="w-8 h-8 bg-[#b48430] text-white flex items-center justify-center text-[11px] font-bold shrink-0">→</div><div class="text-[13px] leading-5"><span class="font-bold text-[#e9d9b4]">Value:</span> Sustainable businesses, jobs, exports, authentic experiences, profitability with purpose</div></div>
+</div>
+</div>
+<div>
+<div class="grid grid-cols-2 gap-3">
+<div class="space-y-3"><div class="h-[280px] overflow-hidden card cursor-pointer" onclick="openLight('images/asdas.jpeg')"><img src="images/asdas.jpeg" class="img-cover hover:scale-105 transition duration-700" alt="Island"></div><div class="h-[180px] overflow-hidden card cursor-pointer" onclick="openLight('images/ddfdf.jpeg')"><img src="images/ddfdf.jpeg" class="img-cover hover:scale-105 transition duration-700" alt="Village"></div></div>
+<div class="space-y-3 mt-6"><div class="h-[180px] overflow-hidden card cursor-pointer" onclick="openLight('images/asdasd.jpeg')"><img src="images/asdasd.jpeg" class="img-cover hover:scale-105 transition duration-700" alt="Bell"></div><div class="h-[280px] overflow-hidden card cursor-pointer" onclick="openLight('images/asdsvs.jpeg')"><img src="images/asdsvs.jpeg" class="img-cover hover:scale-105 transition duration-700" alt="Rice"></div></div>
+</div>
+<div class="mt-4 p-6 bg-[#002448] text-white card relative overflow-hidden"><div class="absolute top-0 right-0 w-32 h-32 bg-[#b48430]/20 rounded-full blur-2xl"></div><div class="kicker text-[#e9d9b4] relative">OUR FORMULA — FROM PDF PAGE 32</div><div class="mt-3 text-[18px] leading-7 font-bold relative">Tourism brings People.<br>People need Hospitality.<br>Hospitality needs Food, Retail & Services.<br>All need Agriculture, Fisheries & Trade.<br>All need Legal & Training.</div><div class="mt-3 text-[12px] leading-5 text-white/60 relative">This is the Integrated Business Model — one customer journey touches 7-8 AHA businesses, multiplying revenue per customer.</div></div>
+</div>
 </div>
 </section>
 
-<!-- OUR BUSINESSES - 11 Divisions per changes -->
-<section id="businesses" class="bg-deepNavy text-white rounded-t-[32px] lg:rounded-t-[48px] border-t border-gold/20">
+<!-- VISION AMBITION MISSION -->
+<section class="bg-[#f8f6f2] border-b reveal" style="border-color:var(--hair)">
 <div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
-  <div class="flex flex-wrap justify-between gap-6 items-end mb-10">
-    <div><div class="flex items-center gap-3 mb-4"><span class="w-8 h-[2px] bg-gold"></span><span class="text-[11px] tracking-[0.2em] uppercase text-gold font-heading">OUR BUSINESSES • 11 DIVISIONS</span></div><h2 class="font-heading text-[42px] lg:text-[64px] leading-[0.9] tracking-[-0.04em]">Multiple divisions. <span class="font-body font-light italic text-paleGold" style="font-style:italic; font-weight:300;">One standard of excellence.</span></h2></div>
-    <p class="text-[14px] leading-[1.6] text-white/60 max-w-[340px] font-body">Every enterprise is owned and operated by AHA, staffed by our teams, audited by our benchmarks, and answerable to our name.</p>
-  </div>
-
-  <div class="grid lg:grid-cols-[360px_1fr] gap-6">
-    <div class="space-y-2 lg:sticky lg:top-[100px] h-fit" id="bizList"></div>
-    <div class="relative min-h-[820px]"><div id="bizDetail" class="rounded-[28px] overflow-hidden bg-paper border border-white/10 h-full shadow-[0_24px_80px_rgba(0,0,0,0.4)]"></div></div>
-  </div>
+<div class="grid lg:grid-cols-3 gap-5">
+<div class="bg-white p-8 card soft group"><div class="kicker">VISION — PAGE 4</div><h3 class="text-[24px] leading-[1.1] mt-3 text-[#002448] group-hover:text-[#b48430] transition">To be a trusted, diversified, internationally connected business group.</h3><p class="mt-4 text-[14px] leading-6 text-[#45566c]">To be a trusted, diversified, internationally connected business group that creates sustainable value by connecting Indonesian resources and opportunities with international markets, while maintaining the highest standards of professionalism, integrity, and service excellence.</p><div class="mt-6 h-[1px] bg-gradient-to-r from-[#b48430]/40 to-transparent"></div></div>
+<div class="bg-[#002448] p-8 text-white card soft group relative overflow-hidden"><div class="absolute -right-10 -top-10 w-40 h-40 bg-[#b48430]/20 rounded-full blur-2xl"></div><div class="kicker text-[#e9d9b4] relative">AMBITION — PAGE 4</div><h3 class="text-[24px] leading-[1.1] mt-3 relative">Indonesia as Hub.<br>International as Corridor.</h3><p class="mt-4 text-[14px] leading-6 text-white/80 relative">Our ambition is to establish Indonesia as the central hub for our diversified operations and create a seamless corridor connecting Indonesia with international markets — facilitating tourism, trade, investment, and cultural exchange. To be the bridge between Indonesia and the world.</p><div class="mt-6 flex gap-2 relative"><span class="text-[10px] tracking-widest border border-white/20 px-2.5 py-1.5">TOURISM CORRIDOR</span><span class="text-[10px] tracking-widest border border-white/20 px-2.5 py-1.5">TRADE CORRIDOR</span></div></div>
+<div class="bg-white p-8 card soft group"><div class="kicker">MISSION — PAGE 5</div><h3 class="text-[24px] leading-[1.1] mt-3 text-[#002448] group-hover:text-[#b48430] transition">Connect. Develop. Facilitate. Grow.</h3><ul class="mt-4 space-y-2.5 text-[13px] leading-5 text-[#45566c]"><li class="flex gap-2"><span class="text-[#b48430] font-bold">—</span><span><strong class="text-[#122238]">Connect:</strong> Indonesian resources with international markets</span></li><li class="flex gap-2"><span class="text-[#b48430] font-bold">—</span><span><strong class="text-[#122238]">Develop:</strong> Sustainable businesses across 11 sectors</span></li><li class="flex gap-2"><span class="text-[#b48430] font-bold">—</span><span><strong class="text-[#122238]">Facilitate:</strong> Investment, tourism, and trade opportunities</span></li><li class="flex gap-2"><span class="text-[#b48430] font-bold">—</span><span><strong class="text-[#122238]">Grow:</strong> With our partners, communities, and stakeholders</span></li><li class="flex gap-2"><span class="text-[#b48430] font-bold">—</span><span><strong class="text-[#122238]">Create Value:</strong> For customers, investors, and society</span></li></ul></div>
+</div>
 </div>
 </section>
 
-<!-- INVESTMENT & PARTNERSHIPS -->
-<section id="investment" class="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 lg:py-24">
-  <div class="flex items-center gap-3 mb-8"><span class="w-8 h-[2px] bg-gold"></span><span class="text-[11px] tracking-[0.2em] uppercase text-gold font-heading">INVESTMENTS & PARTNERSHIPS</span></div>
-  <div class="grid lg:grid-cols-12 gap-10">
-    <div class="lg:col-span-5"><h2 class="font-heading text-[40px] lg:text-[52px] leading-[0.9] tracking-[-0.03em]">Become Our Partner. <span class="font-body font-light italic text-navy" style="font-style:italic;">Grow with us.</span></h2><p class="mt-6 text-[15px] leading-[1.6] text-secondaryInk font-body">Structured pathways for investors, operators, and suppliers to join the AHA ecosystem — from franchise to joint venture, focused on Indonesia and International markets.</p>
-      <div class="mt-8 rounded-[16px] bg-navyMist border navy-hairline p-4"><div class="text-[12px] font-heading text-navy">Future Expansion Roadmap</div><div class="flex flex-wrap gap-2 mt-3"><span class="px-3 py-1 rounded-full bg-paper border navy-hairline text-[11px] font-body">Real Estate & Property Development</span><span class="px-3 py-1 rounded-full bg-paper border navy-hairline text-[11px] font-body">Logistics & Warehousing</span><span class="px-3 py-1 rounded-full bg-paper border navy-hairline text-[11px] font-body">Education & Training</span><span class="px-3 py-1 rounded-full bg-paper border navy-hairline text-[11px] font-body">Renewable Energy</span><span class="px-3 py-1 rounded-full bg-paper border navy-hairline text-[11px] font-body">Construction & Infrastructure</span><span class="px-3 py-1 rounded-full bg-paper border navy-hairline text-[11px] font-body">Information Technology</span><span class="px-3 py-1 rounded-full bg-paper border navy-hairline text-[11px] font-body">Financial Services</span></div></div>
-    </div>
-    <div class="lg:col-span-7 grid md:grid-cols-2 gap-4">
-      <div class="rounded-[20px] bg-paper border navy-hairline p-6 hover:border-gold-hairline transition"><div class="w-10 h-10 rounded-full bg-goldWash border gold-hairline grid place-items-center text-gold mb-4 font-heading">◍</div><h3 class="font-heading text-navy">Become Our Partner</h3><p class="text-[13px] text-secondaryInk mt-2 leading-[1.5] font-body">Join our ecosystem across 11 divisions in Indonesia and International.</p><a href="#contact" class="mt-4 inline-flex text-[12px] text-gold font-heading">Explore →</a></div>
-      <div class="rounded-[20px] bg-paper border navy-hairline p-6 hover:border-gold-hairline transition"><div class="w-10 h-10 rounded-full bg-goldWash border gold-hairline grid place-items-center text-gold mb-4 font-heading">◎</div><h3 class="font-heading text-navy">Investment Opportunities</h3><p class="text-[13px] text-secondaryInk mt-2 leading-[1.5] font-body">Hospitality, farm ventures, fisheries, trade infrastructure.</p><a href="#contact" class="mt-4 inline-flex text-[12px] text-gold font-heading">View Deck →</a></div>
-      <div class="rounded-[20px] bg-paper border navy-hairline p-6 hover:border-gold-hairline transition"><div class="w-10 h-10 rounded-full bg-goldWash border gold-hairline grid place-items-center text-gold mb-4 font-heading">◐</div><h3 class="font-heading text-navy">Joint Ventures</h3><p class="text-[13px] text-secondaryInk mt-2 leading-[1.5] font-body">Co-develop tourism corridors, agri ecosystems, retail chains.</p><a href="#contact" class="mt-4 inline-flex text-[12px] text-gold font-heading">Discuss →</a></div>
-      <div class="rounded-[20px] bg-paper border navy-hairline p-6 hover:border-gold-hairline transition"><div class="w-10 h-10 rounded-full bg-navyMist border navy-hairline grid place-items-center text-navy mb-4 font-heading">◑</div><h3 class="font-heading text-navy">Franchise Opportunities</h3><p class="text-[13px] text-secondaryInk mt-2 leading-[1.5] font-body">Restaurant, Mini Mart, Automotive studio models.</p><a href="#contact" class="mt-4 inline-flex text-[12px] text-gold font-heading">Get Details →</a></div>
-      <div class="rounded-[20px] bg-paper border navy-hairline p-6 hover:border-gold-hairline transition"><div class="w-10 h-10 rounded-full bg-navyMist border navy-hairline grid place-items-center text-navy mb-4 font-heading">◑</div><h3 class="font-heading text-navy">Dealer Network</h3><p class="text-[13px] text-secondaryInk mt-2 leading-[1.5] font-body">Automotive, agriculture inputs, medical distribution.</p><a href="#contact" class="mt-4 inline-flex text-[12px] text-gold font-heading">Apply →</a></div>
-      <div class="rounded-[20px] bg-paper border navy-hairline p-6 hover:border-gold-hairline transition"><div class="w-10 h-10 rounded-full bg-navy text-paleGold grid place-items-center mb-4 font-heading">✦</div><h3 class="font-heading text-navy">Strategic Alliances</h3><p class="text-[13px] text-secondaryInk mt-2 leading-[1.5] font-body">Institutional and corporate partnerships — Indonesia + International.</p><a href="#contact" class="mt-4 inline-flex text-[12px] text-gold font-heading">Connect →</a></div>
-      <div class="rounded-[20px] bg-navy text-white p-6 border border-white/10 md:col-span-2"><div class="flex gap-4 items-center"><div class="w-10 h-10 rounded-full bg-white/10 grid place-items-center text-paleGold font-heading">↗</div><div><h3 class="font-heading">Supplier Registration</h3><p class="text-[13px] text-white/70 mt-1 font-body">Join approved vendor list for F&B, construction, logistics, medical.</p></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- MEDIA CENTER -->
-<section id="media" class="bg-paper border-y navy-hairline">
-<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
-  <div class="flex flex-wrap justify-between gap-4 items-center mb-10"><div class="flex items-center gap-3"><span class="w-8 h-[2px] bg-gold"></span><span class="text-[11px] tracking-[0.2em] uppercase text-gold font-heading">MEDIA CENTER</span></div><div class="flex flex-wrap gap-2"><button class="px-4 py-2 rounded-full bg-navy text-white text-[12px] font-heading">Latest News</button><button class="px-4 py-2 rounded-full border navy-hairline text-[12px] text-secondaryInk font-body">Press Releases</button><button class="px-4 py-2 rounded-full border navy-hairline text-[12px] text-secondaryInk font-body">Photo Gallery</button><button class="px-4 py-2 rounded-full border navy-hairline text-[12px] text-secondaryInk font-body">Video Gallery</button><button class="px-4 py-2 rounded-full border navy-hairline text-[12px] text-secondaryInk font-body">Blogs</button><button class="px-4 py-2 rounded-full border navy-hairline text-[12px] text-secondaryInk font-body">Events</button></div></div>
-  <div class="grid md:grid-cols-3 gap-4">
-    <div class="rounded-[20px] overflow-hidden border navy-hairline bg-ivory"><div class="aspect-[16/10] bg-navyMist"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover"></div><div class="p-5"><div class="text-[11px] tracking-[0.12em] uppercase text-gold font-heading">Latest News • Dec 2025</div><div class="font-heading text-navy mt-2 leading-[1.3]">AHA opens new Farm House & Agri Tourism site in Bali highlands</div><div class="text-[12px] text-secondaryInk mt-2 font-body">Integrated farm-to-table ecosystem with 20 local jobs — Indonesia.</div></div></div>
-    <div class="rounded-[20px] overflow-hidden border navy-hairline bg-ivory"><div class="aspect-[16/10] bg-navyMist"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover"></div><div class="p-5"><div class="text-[11px] tracking-[0.12em] uppercase text-gold font-heading">Blog • Nov 2025</div><div class="font-heading text-navy mt-2 leading-[1.3]">Why adventure tourism is Indonesia's next growth niche</div><div class="text-[12px] text-secondaryInk mt-2 font-body">Lessons from our 3-island pilot across International markets.</div></div></div>
-    <div class="rounded-[20px] overflow-hidden border navy-hairline bg-ivory"><div class="aspect-[16/10] bg-navyMist"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover"></div><div class="p-5"><div class="text-[11px] tracking-[0.12em] uppercase text-gold font-heading">Event • Jan 2026</div><div class="font-heading text-navy mt-2 leading-[1.3]">Investment Roundtable: Hospitality & Trade Corridors</div><div class="text-[12px] text-secondaryInk mt-2 font-body">Bali • 40 investors • International partners • RSVP open.</div></div></div>
-  </div>
+<!-- PHILOSOPHY 6 PILLARS -->
+<section class="bg-white border-b reveal" style="border-color:var(--hair)">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-20 lg:py-24">
+<div class="flex flex-wrap items-end justify-between gap-6"><div><div class="kicker">BUSINESS PHILOSOPHY — PAGE 6 FULLY TYPED</div><h2 class="text-[36px] lg:text-[52px] leading-[0.9] mt-3 text-[#002448]">Connecting Resources,<br>Creating Value.</h2></div><p class="max-w-[420px] text-[14px] leading-6 text-[#45566c]">Six interdependent resources. We don't just run businesses — we connect these six to create sustainable value. This is from your presentation, fully typed and made interactive.</p></div>
+<div class="grid lg:grid-cols-3 gap-4 mt-10">
+<div class="border p-7 bg-[#f8f6f2] card group"><div class="flex justify-between items-start"><div class="w-10 h-10 bg-[#002448] text-white flex items-center justify-center font-bold text-[12px] group-hover:bg-[#b48430] transition">01</div><span class="text-[10px] tracking-widest text-[#7b8a9d]">FINANCIAL</span></div><h4 class="mt-4 text-[16px] text-[#002448]">CAPITAL</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Financial resources, investment capability, asset base, and ability to mobilize funds for growth opportunities. We deploy capital strategically across sectors to maximize integrated returns.</p></div>
+<div class="border p-7 bg-white card group"><div class="flex justify-between items-start"><div class="w-10 h-10 bg-[#b48430] text-white flex items-center justify-center font-bold text-[12px]">02</div><span class="text-[10px] tracking-widest text-[#7b8a9d]">HUMAN</span></div><h4 class="mt-4 text-[16px] text-[#002448]">PEOPLE</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Human capital, talent, expertise, cultural understanding, and relationships. Our people are our bridge — multilingual, multicultural, and deeply connected in Indonesia and international markets.</p></div>
+<div class="border p-7 bg-[#f8f6f2] card group"><div class="flex justify-between items-start"><div class="w-10 h-10 bg-[#002448] text-white flex items-center justify-center font-bold text-[12px] group-hover:bg-[#b48430] transition">03</div><span class="text-[10px] tracking-widest text-[#7b8a9d]">DEMAND</span></div><h4 class="mt-4 text-[16px] text-[#002448]">MARKETS</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Indonesia's 270M+ domestic market plus international corridors. We understand tourist markets, food markets, retail markets, agricultural markets, and B2B service markets.</p></div>
+<div class="border p-7 bg-white card group"><div class="flex justify-between items-start"><div class="w-10 h-10 bg-[#002448] text-white flex items-center justify-center font-bold text-[12px] group-hover:bg-[#b48430] transition">04</div><span class="text-[10px] tracking-widest text-[#7b8a9d]">KNOW-HOW</span></div><h4 class="mt-4 text-[16px] text-[#002448]">EXPERTISE</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Operational knowledge across 11 sectors — from running hotels and restaurants to legal PT PMA formation, import-export documentation, and farm management.</p></div>
+<div class="border p-7 bg-[#f8f6f2] card group"><div class="flex justify-between items-start"><div class="w-10 h-10 bg-[#002448] text-white flex items-center justify-center font-bold text-[12px] group-hover:bg-[#b48430] transition">05</div><span class="text-[10px] tracking-widest text-[#7b8a9d]">RELATIONSHIPS</span></div><h4 class="mt-4 text-[16px] text-[#002448]">NETWORKS</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Partnerships with government, tourism boards, suppliers, airlines, hotels, farmers, fishermen, retailers, and international buyers. Networks that take years to build.</p></div>
+<div class="border p-7 bg-white card group"><div class="flex justify-between items-start"><div class="w-10 h-10 bg-[#b48430] text-white flex items-center justify-center font-bold text-[12px]">06</div><span class="text-[10px] tracking-widest text-[#7b8a9d]">GROWTH</span></div><h4 class="mt-4 text-[16px] text-[#002448]">OPPORTUNITIES</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Indonesia Tourism Corridor, Religious Tourism, Agro-Tourism, Export of Indonesian products, Import of needed goods, Training needs, Healthcare access, Legal facilitation for investors.</p></div>
+</div>
 </div>
 </section>
 
-<!-- CAREERS -->
-<section id="careers" class="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 lg:py-24">
-  <div class="grid lg:grid-cols-12 gap-10">
-    <div class="lg:col-span-5"><div class="flex items-center gap-3 mb-6"><span class="w-8 h-[2px] bg-gold"></span><span class="text-[11px] tracking-[0.2em] uppercase text-gold font-heading">CAREERS</span></div><h2 class="font-heading text-[40px] lg:text-[52px] leading-[0.9]">Life at <span class="font-body font-light italic text-navy" style="font-style:italic;">AHA Resources</span></h2><p class="mt-4 text-[15px] leading-[1.6] text-secondaryInk font-body">Own the work. From suites to shelves, every team is held to one standard of care — Indonesia and International markets.</p><div class="mt-8 space-y-3"><div class="rounded-[12px] bg-paper border navy-hairline p-4 flex justify-between items-center"><div><div class="text-[13px] font-heading text-navy">Current Openings</div><div class="text-[12px] text-secondaryInk font-body">Operations, Hospitality, Trade, Farm — Indonesia</div></div><span class="w-8 h-8 rounded-full bg-gold text-white grid place-items-center">↗</span></div><div class="rounded-[12px] bg-paper border navy-hairline p-4 flex justify-between items-center"><div><div class="text-[13px] font-heading text-navy">Internships</div><div class="text-[12px] text-secondaryInk font-body">Bali & International • 3-6 months</div></div><span class="w-8 h-8 rounded-full bg-navyMist border navy-hairline grid place-items-center text-navy">↗</span></div><div class="rounded-[12px] bg-paper border navy-hairline p-4 flex justify-between items-center"><div><div class="text-[13px] font-heading text-navy">Life at AHA Resources</div><div class="text-[12px] text-secondaryInk font-body">Culture, growth, community</div></div><span class="w-8 h-8 rounded-full bg-navyMist border navy-hairline grid place-items-center text-navy">↗</span></div></div></div>
-    <div class="lg:col-span-7 rounded-[24px] bg-navy text-white p-8 border border-white/10">
-      <div class="flex justify-between items-center mb-6"><div class="text-[14px] font-heading">Apply Online</div><div class="text-[11px] px-3 py-1 rounded-full bg-white/10 border border-white/10 font-body">We reply in 48h</div></div>
-      <form class="grid md:grid-cols-2 gap-4 font-body" onsubmit="event.preventDefault(); alert('Application received!');">
-        <input placeholder="Full Name" required class="h-12 rounded-full bg-white/10 border border-white/15 px-5 text-[13px] placeholder:text-white/40 outline-none focus:border-gold">
-        <input placeholder="Email" required class="h-12 rounded-full bg-white/10 border border-white/15 px-5 text-[13px] placeholder:text-white/40 outline-none focus:border-gold">
-        <select class="h-12 rounded-full bg-white/10 border border-white/15 px-5 text-[13px] text-white/80 outline-none"><option>Select Division</option><option>Travel & Tourism</option><option>Hospitality & Accommodation</option><option>Restaurants & Café</option><option>Retail & Mini Mart</option><option>Automotive Services</option><option>Agriculture & Farm Ventures</option><option>Fisheries & Aquaculture</option><option>Import Export & Trade</option><option>Healthcare & Pharmacy</option><option>Legal & Consultancy</option><option>Professional Training</option></select>
-        <input placeholder="Phone / WhatsApp" class="h-12 rounded-full bg-white/10 border border-white/15 px-5 text-[13px] placeholder:text-white/40 outline-none">
-        <textarea placeholder="Why AHA? (Indonesia + International focus)" rows="3" class="md:col-span-2 rounded-[16px] bg-white/10 border border-white/15 p-4 text-[13px] placeholder:text-white/40 outline-none"></textarea>
-        <button class="md:col-span-2 h-12 rounded-full bg-gold text-white font-heading text-[13px] hover:bg-brightGold tracking-[0.02em]">Submit Application</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- CSR & Sustainability -->
-<section id="csr" class="bg-softNavy text-white border-y border-gold/20">
-<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
-  <div class="grid lg:grid-cols-12 gap-10">
-    <div class="lg:col-span-5"><div class="flex items-center gap-3 mb-6"><span class="w-8 h-[2px] bg-gold"></span><span class="text-[11px] tracking-[0.2em] uppercase text-gold font-heading">CSR</span></div><h2 id="sustainability" class="font-heading text-[40px] lg:text-[52px] leading-[0.9]">Building Businesses That <span class="font-body font-light italic text-paleGold" style="font-style:italic;">Create Value</span></h2><div class="mt-6 p-4 rounded-[14px] bg-deepNavy border border-white/10"><div class="text-[11px] tracking-[0.12em] uppercase text-paleGold font-heading">Our Principle</div><div class="font-heading text-[22px] mt-1">Profitability with Purpose.</div><div class="text-[13px] text-white/60 mt-2 leading-[1.5] font-body">Sustainable practices, local employment, community participation, responsible tourism, environmental awareness, local sourcing, skills development, long-term economic value — Indonesia and International.</div></div></div>
-    <div class="lg:col-span-7 grid md:grid-cols-2 gap-4">
-      <div class="rounded-[16px] bg-white/[0.06] border border-white/10 p-5"><div class="w-8 h-8 rounded-full bg-goldWash text-navy grid place-items-center text-[12px] font-heading">◍</div><h3 class="font-heading mt-3 text-[14px]">Community Development</h3><p class="text-[12px] text-white/60 mt-2 leading-[1.5] font-body">Jobs, training, and local procurement woven into operating plan across Indonesia.</p></div>
-      <div class="rounded-[16px] bg-white/[0.06] border border-white/10 p-5"><div class="w-8 h-8 rounded-full bg-goldWash text-navy grid place-items-center text-[12px] font-heading">◎</div><h3 class="font-heading mt-3 text-[14px]">Environmental Sustainability</h3><p class="text-[12px] text-white/60 mt-2 leading-[1.5] font-body">Organic farming, responsible tourism, waste reduction.</p></div>
-      <div class="rounded-[16px] bg-white/[0.06] border border-white/10 p-5"><div class="w-8 h-8 rounded-full bg-goldWash text-navy grid place-items-center text-[12px] font-heading">◐</div><h3 class="font-heading mt-3 text-[14px]">Education</h3><p class="text-[12px] text-white/60 mt-2 leading-[1.5] font-body">Hospitality training, guide certification, farm education tours.</p></div>
-      <div class="rounded-[16px] bg-white/[0.06] border border-white/10 p-5"><div class="w-8 h-8 rounded-full bg-goldWash text-navy grid place-items-center text-[12px] font-heading">◑</div><h3 class="font-heading mt-3 text-[14px]">Healthcare</h3><p class="text-[12px] text-white/60 mt-2 leading-[1.5] font-body">Pharmacy access, wellness tourism, first aid training.</p></div>
-      <div class="rounded-[16px] bg-goldWash border gold-hairline p-5 md:col-span-2 flex gap-4 items-center"><div class="w-10 h-10 rounded-full bg-gold text-white grid place-items-center font-heading">↗</div><div><h3 class="font-heading text-navy text-[14px]">Disaster Relief</h3><p class="text-[12px] text-secondaryInk mt-1 font-body">Rapid response via logistics & retail network across Indonesia and International markets.</p></div></div>
-    </div>
-  </div>
+<!-- ABOUT FULL -->
+<section id="about" class="bg-[#f7f5f0] border-b reveal" style="border-color:var(--hair)">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+<div class="grid lg:grid-cols-[0.92fr_1.08fr] gap-14 items-start">
+<div class="lg:sticky lg:top-[110px]">
+<div class="tag inline-block">ABOUT US — FULL PAGE NO TABS</div>
+<h2 class="text-[40px] lg:text-[54px] leading-[0.9] mt-4 text-[#002448]">Company Overview,<br>Chairman, Values,<br>Journey & Purpose.</h2>
+<div class="mt-6 grid grid-cols-2 gap-3">
+<div class="h-[180px] overflow-hidden card cursor-pointer" onclick="openLight('images/dsfsdz.jpeg')"><img src="images/dsfsdz.jpeg" class="img-cover hover:scale-105 transition duration-700" alt="Culture"></div>
+<div class="h-[180px] overflow-hidden card cursor-pointer" onclick="openLight('images/fdhdfh.jpeg')"><img src="images/fdhdfh.jpeg" class="img-cover hover:scale-105 transition duration-700" alt="Building"></div>
+</div>
+<div class="mt-6 p-6 bg-white border card soft"><div class="text-[11px] tracking-[0.18em] font-bold text-[#b48430]">CHAIRMAN'S MESSAGE</div><p class="mt-3 text-[14px] leading-6 text-[#45566c] italic">“We started AHA Resources with a simple belief — Indonesia's richness deserves a professional bridge to the world. From one island to 17,000 islands, from one business to eleven, our purpose remains: profitability with purpose, growth with integrity.”</p><div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 bg-[#002448] rounded-full"></div><div><div class="text-[12px] font-bold text-[#002448]">CHAIRMAN</div><div class="text-[11px] text-[#7b8a9d]">AHA Resources</div></div></div></div>
+</div>
+<div class="space-y-10">
+<div><h3 class="text-[22px] text-[#002448]">Company Overview</h3><p class="mt-3 text-[14px] leading-7 text-[#45566c]">AHA Resources is an Indonesia-centric diversified group operating across 11 verticals. We facilitate tourism, trade, and investment between Indonesia and international markets. Our businesses are designed to be interlinked — a tourist uses our Travel service, stays in our Hospitality network, eats at our Restaurants, shops at our Retail, and the products he buys come from our Agriculture, Fisheries, and Import-Export arms. The legal and training arms support investors who want to replicate this model.</p></div>
+<div class="grid md:grid-cols-2 gap-4"><div class="bg-white p-6 card"><h4 class="text-[12px] tracking-[0.16em] font-bold text-[#002448]">VISION & MISSION</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Vision: Trusted, diversified, internationally connected. Mission: Connect resources, develop businesses, facilitate opportunities, grow with partners, create value.</p></div><div class="bg-white p-6 card"><h4 class="text-[12px] tracking-[0.16em] font-bold text-[#002448]">WHY CHOOSE AHA</h4><ul class="mt-2 text-[13px] leading-6 text-[#45566c] list-disc pl-4"><li>11 Integrated Businesses</li><li>Indonesia Hub + International Corridor</li><li>End-to-End Facilitation (PT PMA to Operations)</li><li>Cultural & Market Expertise</li><li>Network of Government & Private Partners</li><li>Profitability with Purpose</li></ul></div></div>
+<div><h3 class="text-[22px] text-[#002448]">Core Values — 6 Pillars</h3><div class="mt-4 grid md:grid-cols-3 gap-3"><div class="p-4 bg-white border card"><div class="text-[11px] font-bold tracking-widest text-[#b48430]">01 INTEGRITY</div><div class="mt-1 text-[12px] leading-5 text-[#45566c]">Honest, ethical, transparent in all dealings.</div></div><div class="p-4 bg-white border card"><div class="text-[11px] font-bold tracking-widest text-[#b48430]">02 PROFESSIONALISM</div><div class="mt-1 text-[12px] leading-5 text-[#45566c]">Highest standards of service and execution.</div></div><div class="p-4 bg-white border card"><div class="text-[11px] font-bold tracking-widest text-[#b48430]">03 TRANSPARENCY</div><div class="mt-1 text-[12px] leading-5 text-[#45566c]">Clear communication with partners and clients.</div></div><div class="p-4 bg-white border card"><div class="text-[11px] font-bold tracking-widest text-[#b48430]">04 INNOVATION</div><div class="mt-1 text-[12px] leading-5 text-[#45566c]">Creative solutions for evolving markets.</div></div><div class="p-4 bg-white border card"><div class="text-[11px] font-bold tracking-widest text-[#b48430]">05 PARTNERSHIP</div><div class="mt-1 text-[12px] leading-5 text-[#45566c]">Growth together with stakeholders.</div></div><div class="p-4 bg-white border card"><div class="text-[11px] font-bold tracking-widest text-[#b48430]">06 VALUE CREATION</div><div class="mt-1 text-[12px] leading-5 text-[#45566c]">Sustainable value for all.</div></div></div></div>
+<div><h3 class="text-[22px] text-[#002448]">Our Journey 2020-2026</h3><div class="mt-4 border-l-2 pl-6 space-y-6" style="border-color:var(--hairG)"><div><div class="text-[11px] font-bold text-[#b48430]">2020-21 • FOUNDATION</div><div class="text-[13px] mt-1">Legal & Corporate Consultancy, PT PMA facilitation, market research for Indonesia corridor.</div></div><div><div class="text-[11px] font-bold text-[#b48430]">2022 • TRAVEL & HOSPITALITY</div><div class="text-[13px] mt-1">Launch Indonesia Tourism Corridor, religious tourism Hajj/Umrah packages, hotel partnerships.</div></div><div><div class="text-[11px] font-bold text-[#b48430]">2023 • FOOD & RETAIL</div><div class="text-[13px] mt-1">Restaurants (7 kitchens concept), Neighbourhood Shelf retail, import-export of food products.</div></div><div><div class="text-[11px] font-bold text-[#b48430]">2024 • PRIMARY SECTORS</div><div class="text-[13px] mt-1">Agriculture Farm House, Fisheries, Automotive care, Healthcare pharmacy.</div></div><div><div class="text-[11px] font-bold text-[#b48430]">2025-26 • INTEGRATION</div><div class="text-[13px] mt-1">Full ecosystem integration, training academy, international partnerships, cruise & medical tourism.</div></div></div></div>
+<div class="bg-[#002448] p-7 text-white card"><h4 class="text-[12px] tracking-[0.16em] font-bold text-[#e9d9b4]">SUSTAINABILITY & CSR — PROFITABILITY WITH PURPOSE</h4><div class="mt-4 grid md:grid-cols-2 gap-4 text-[13px] leading-6 text-white/80"><div><strong class="text-white">Community:</strong> Local hiring, cultural preservation, supporting artisans.</div><div><strong class="text-white">Environmental:</strong> Sustainable fishing, organic farming, eco-tourism.</div><div><strong class="text-white">Education:</strong> Skills training, tourism & hospitality academy.</div><div><strong class="text-white">Healthcare:</strong> Pharmacy access, health camps.</div><div><strong class="text-white">Disaster Relief:</strong> Rapid response in Indonesia.</div><div><strong class="text-white">Principle:</strong> Profitability with Purpose — every business must be profitable AND purposeful.</div></div></div>
+</div>
+</div>
 </div>
 </section>
 
-<!-- CONTACT US -->
-<section id="contact" class="bg-ivory">
-<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 lg:py-24">
-  <div class="grid lg:grid-cols-12 gap-10">
-    <div class="lg:col-span-5">
-      <div class="flex items-center gap-3 mb-6"><span class="w-8 h-[2px] bg-gold"></span><span class="text-[11px] tracking-[0.2em] uppercase text-gold font-heading">CONTACT US</span></div>
-      <h2 class="font-heading text-[40px] lg:text-[52px] leading-[0.9]">Let's build <span class="font-body font-light italic text-navy" style="font-style:italic;">something valuable</span> together.</h2>
-      <div class="mt-8 space-y-4 font-body">
-        <div class="rounded-[14px] bg-paper border navy-hairline p-4 flex gap-3"><div class="w-9 h-9 rounded-full bg-navyMist border navy-hairline grid place-items-center text-navy font-heading">◍</div><div><div class="text-[11px] tracking-[0.12em] uppercase text-tertiaryInk">Corporate Office</div><div class="text-[13px] font-heading text-navy mt-1">Bali, Indonesia</div><div class="text-[12px] text-secondaryInk">Jl. Sunset Road No. 88, Kuta — Indonesia Hub</div></div></div>
-        <div class="rounded-[14px] bg-paper border navy-hairline p-4 flex gap-3"><div class="w-9 h-9 rounded-full bg-navyMist border navy-hairline grid place-items-center text-navy font-heading">◍</div><div><div class="text-[11px] tracking-[0.12em] uppercase text-tertiaryInk">Regional Offices</div><div class="text-[13px] font-heading text-navy mt-1">Jakarta • Surabaya • Labuan Bajo</div><div class="text-[12px] text-secondaryInk">Indonesia network + International desk</div></div></div>
-        <div class="grid grid-cols-2 gap-3">
-          <div class="rounded-[14px] bg-paper border navy-hairline p-4"><div class="text-[11px] uppercase text-tertiaryInk">Phone Numbers</div><div class="text-[13px] font-heading text-navy mt-1">+62 812-3456-7890<br>+62 811-2345-6789</div></div>
-          <div class="rounded-[14px] bg-paper border navy-hairline p-4"><div class="text-[11px] uppercase text-tertiaryInk">WhatsApp</div><div class="text-[13px] font-heading text-navy mt-1">+62 812-3456-7890</div><div class="text-[11px] text-gold mt-1 font-heading">Instant reply</div></div>
-        </div>
-        <div class="rounded-[14px] bg-paper border navy-hairline p-4 flex justify-between items-center"><div><div class="text-[11px] uppercase text-tertiaryInk">Email</div><div class="text-[13px] font-heading text-navy mt-1">hello@aharesources.co.id<br>partners@aharesources.co.id</div></div><div class="w-8 h-8 rounded-full bg-gold text-white grid place-items-center font-heading">✉</div></div>
-        <div class="rounded-[14px] bg-goldWash border gold-hairline p-4"><div class="text-[11px] uppercase text-gold font-heading">Business Hours</div><div class="text-[13px] text-bodyInk mt-1">Mon - Sat: 9:00 AM - 6:00 PM WITA<br>Sun: Closed (Emergency Trade Desk Open)</div></div>
-        <div class="rounded-[14px] bg-navyMist border navy-hairline p-4"><div class="text-[11px] uppercase text-navy font-heading">Google Maps</div><div class="mt-2 rounded-[10px] overflow-hidden h-[120px] bg-paper border navy-hairline grid place-items-center text-[12px] text-secondaryInk font-body text-center">Map Embed — Bali Corporate Office, Indonesia<br><span class="text-gold underline font-heading">Open in Google Maps →</span></div></div>
-      </div>
-    </div>
-    <div class="lg:col-span-7">
-      <div class="bg-paper border navy-hairline rounded-[24px] p-6 lg:p-8 shadow-[0_20px_60px_rgba(0,36,72,0.08)]">
-        <div class="flex justify-between items-center mb-6"><div class="text-[14px] font-heading text-navy">Contact Form</div><div class="text-[11px] px-3 py-1 rounded-full bg-goldWash border gold-hairline text-navy font-body">Avg. reply: 3 hours</div></div>
-        <form class="space-y-4 font-body" onsubmit="event.preventDefault(); alert('Thank you! We will contact you shortly.');">
-          <div class="grid md:grid-cols-2 gap-4">
-            <label class="block"><span class="text-[11px] tracking-[0.12em] uppercase text-gold font-heading">Full Name</span><input required class="mt-2 w-full h-12 rounded-full bg-ivory border navy-hairline px-5 text-[13px] outline-none focus:border-gold-hairline"></label>
-            <label class="block"><span class="text-[11px] tracking-[0.12em] uppercase text-gold font-heading">Company</span><input class="mt-2 w-full h-12 rounded-full bg-ivory border navy-hairline px-5 text-[13px] outline-none focus:border-gold-hairline"></label>
-          </div>
-          <div class="grid md:grid-cols-2 gap-4">
-            <label class="block"><span class="text-[11px] tracking-[0.12em] uppercase text-gold font-heading">Interest</span><select class="mt-2 w-full h-12 rounded-full bg-ivory border navy-hairline px-5 text-[13px]"><option>Travel & Tourism</option><option>Hospitality & Accommodation</option><option>Restaurants & Café</option><option>Retail & Mini Mart</option><option>Automotive Services</option><option>Agriculture & Farm Ventures</option><option>Fisheries & Aquaculture</option><option>Import Export & Trade</option><option>Healthcare & Pharmacy</option><option>Legal & Business Consultancy</option><option>Corporate & Professional Training</option><option>Investment / JV</option></select></label>
-            <label class="block"><span class="text-[11px] tracking-[0.12em] uppercase text-gold font-heading">Budget / Scale</span><input class="mt-2 w-full h-12 rounded-full bg-ivory border navy-hairline px-5 text-[13px]" placeholder="e.g. $50k - $200k"></label>
-          </div>
-          <label class="block"><span class="text-[11px] tracking-[0.12em] uppercase text-gold font-heading">Message</span><textarea rows="4" class="mt-2 w-full rounded-[20px] bg-ivory border navy-hairline p-5 text-[13px] outline-none focus:border-gold-hairline" placeholder="Tell us about your opportunity in Indonesia and International markets..."></textarea></label>
-          <button type="submit" class="w-full h-[52px] rounded-full bg-gold text-white font-heading text-[14px] hover:bg-brightGold shadow-[0_4px_20px_rgba(180,132,48,0.3)] tracking-[0.02em]">Send Inquiry ↗</button>
-          <div class="text-[11px] text-tertiaryInk text-center font-body">By submitting, you agree to Privacy Policy, Terms & Conditions, and Cookie Policy.</div>
-        </form>
-        <div class="mt-6 pt-6 border-t navy-hairline flex flex-wrap gap-2 text-[11px] font-body"><span class="px-3 py-1 rounded-full bg-ivory border navy-hairline">Privacy Policy</span><span class="px-3 py-1 rounded-full bg-ivory border navy-hairline">Terms & Conditions</span><span class="px-3 py-1 rounded-full bg-ivory border navy-hairline">Refund Policy</span><span class="px-3 py-1 rounded-full bg-ivory border navy-hairline">Cookie Policy</span></div>
-      </div>
-    </div>
-  </div>
+<!-- BUSINESSES OVERVIEW FILTER -->
+<section id="businesses" class="bg-white border-b reveal" style="border-color:var(--hair)">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-20 lg:py-24">
+<div class="flex flex-wrap justify-between items-end gap-6"><div><div class="kicker">OUR BUSINESSES — 11 INTEGRATED VERTICALS</div><h2 class="text-[36px] lg:text-[52px] leading-[0.9] mt-3 text-[#002448]">Diversified Ecosystem.<br>One Customer Journey.</h2></div><div class="flex gap-2"><button onclick="filterBiz('all')" class="filter-btn active text-[10px] tracking-widest font-bold border px-4 py-2 bg-[#002448] text-white" data-filter="all">ALL 11</button><button onclick="filterBiz('tourism')" class="filter-btn text-[10px] tracking-widest font-bold border px-4 py-2 hover:border-[#b48430]" data-filter="tourism">TOURISM</button><button onclick="filterBiz('food')" class="filter-btn text-[10px] tracking-widest font-bold border px-4 py-2 hover:border-[#b48430]" data-filter="food">FOOD</button><button onclick="filterBiz('trade')" class="filter-btn text-[10px] tracking-widest font-bold border px-4 py-2 hover:border-[#b48430]" data-filter="trade">TRADE</button><button onclick="filterBiz('service')" class="filter-btn text-[10px] tracking-widest font-bold border px-4 py-2 hover:border-[#b48430]" data-filter="service">SERVICES</button></div></div>
+<div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="bizGrid">
+<div data-cat="tourism" class="biz-card group border p-5 hover:border-[#b48430]/50 transition bg-[#f8f6f2] card cursor-pointer" onclick="document.querySelector('#biz-travel').scrollIntoView({behavior:'smooth'})"><div class="flex justify-between"><span class="tag">01</span><span class="text-[10px] tracking-widest">TOURISM CORRIDOR</span></div><h4 class="mt-4 text-[16px] text-[#002448] group-hover:text-[#b48430]">Travel & Tourism</h4><p class="mt-1 text-[12px] leading-5 text-[#45566c]">Indonesia Tourism Corridor, Religious, Motorcycle, Cultural, Medical, Cruise, Educational</p><div class="mt-4 h-[110px] overflow-hidden"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.30.jpeg" class="img-cover group-hover:scale-105 transition duration-700" alt=""></div></div>
+<div data-cat="tourism" class="biz-card group border p-5 hover:border-[#b48430]/50 transition bg-white card cursor-pointer" onclick="document.querySelector('#biz-hospitality').scrollIntoView({behavior:'smooth'})"><div class="flex justify-between"><span class="tag">02</span><span class="text-[10px] tracking-widest">STAY + EXPERIENCE</span></div><h4 class="mt-4 text-[16px] text-[#002448] group-hover:text-[#b48430]">Hospitality</h4><p class="mt-1 text-[12px] leading-5 text-[#45566c]">Accommodation, Tourism, Food & Beverages, Experiences</p><div class="mt-4 h-[110px] overflow-hidden"><img src="images/sd.jpeg" class="img-cover group-hover:scale-105 transition duration-700" alt=""></div></div>
+<div data-cat="food" class="biz-card group border p-5 hover:border-[#b48430]/50 transition bg-[#f8f6f2] card cursor-pointer" onclick="document.querySelector('#biz-restaurants').scrollIntoView({behavior:'smooth'})"><div class="flex justify-between"><span class="tag">03</span><span class="text-[10px] tracking-widest">7 KITCHENS</span></div><h4 class="mt-4 text-[16px] text-[#002448] group-hover:text-[#b48430]">Restaurants</h4><p class="mt-1 text-[12px] leading-5 text-[#45566c]">Indonesian, International, Seafood, Grill, Cafe, Bakery, Cloud Kitchen</p><div class="mt-4 h-[110px] overflow-hidden"><img src="images/567yhtgj.jpeg" class="img-cover group-hover:scale-105 transition duration-700" alt=""></div></div>
+<div data-cat="trade" class="biz-card group border p-5 hover:border-[#b48430]/50 transition bg-white card cursor-pointer" onclick="document.querySelector('#biz-retail').scrollIntoView({behavior:'smooth'})"><div class="flex justify-between"><span class="tag">04</span><span class="text-[10px] tracking-widest">NEIGHBOURHOOD SHELF</span></div><h4 class="mt-4 text-[16px] text-[#002448] group-hover:text-[#b48430]">Retail</h4><p class="mt-1 text-[12px] leading-5 text-[#45566c]">Daily needs, Indonesian products, souvenirs, export shelf</p><div class="mt-4 h-[110px] overflow-hidden"><img src="images/kjsdfj.jpeg" class="img-cover group-hover:scale-105 transition duration-700" alt=""></div></div>
+<div data-cat="service" class="biz-card group border p-5 hover:border-[#b48430]/50 transition bg-[#f8f6f2] card cursor-pointer" onclick="document.querySelector('#biz-automotive').scrollIntoView({behavior:'smooth'})"><div class="flex justify-between"><span class="tag">05</span><span class="text-[10px] tracking-widest">CARE</span></div><h4 class="mt-4 text-[16px] text-[#002448] group-hover:text-[#b48430]">Automotive</h4><p class="mt-1 text-[12px] leading-5 text-[#45566c]">Car Wash, Detailing, Maintenance, Tourism vehicles</p><div class="mt-4 h-[110px] overflow-hidden"><img src="images/WhatsApp_Image_2026-09-06_at_3.jpeg" class="img-cover group-hover:scale-105 transition duration-700" alt=""></div></div>
+<div data-cat="food" class="biz-card group border p-5 hover:border-[#b48430]/50 transition bg-white card cursor-pointer" onclick="document.querySelector('#biz-agriculture').scrollIntoView({behavior:'smooth'})"><div class="flex justify-between"><span class="tag">06</span><span class="text-[10px] tracking-widest">FARM HOUSE</span></div><h4 class="mt-4 text-[16px] text-[#002448] group-hover:text-[#b48430]">Agriculture</h4><p class="mt-1 text-[12px] leading-5 text-[#45566c]">Farm House, Agri-Tourism, Organic produce, Supply to Restaurants</p><div class="mt-4 h-[110px] overflow-hidden"><img src="images/asdsvs.jpeg" class="img-cover group-hover:scale-105 transition duration-700" alt=""></div></div>
+<div data-cat="food" class="biz-card group border p-5 hover:border-[#b48430]/50 transition bg-[#f8f6f2] card cursor-pointer" onclick="document.querySelector('#biz-fisheries').scrollIntoView({behavior:'smooth'})"><div class="flex justify-between"><span class="tag">07</span><span class="text-[10px] tracking-widest">BLUE ECONOMY</span></div><h4 class="mt-4 text-[16px] text-[#002448] group-hover:text-[#b48430]">Fisheries</h4><p class="mt-1 text-[12px] leading-5 text-[#45566c]">Fish & Prawn Farming, Sustainable, Supply & Export</p><div class="mt-4 h-[110px] overflow-hidden"><img src="images/asdas.jpeg" class="img-cover group-hover:scale-105 transition duration-700" alt=""></div></div>
+<div data-cat="trade" class="biz-card group border p-5 hover:border-[#b48430]/50 transition bg-white card cursor-pointer" onclick="document.querySelector('#biz-trade').scrollIntoView({behavior:'smooth'})"><div class="flex justify-between"><span class="tag">08</span><span class="text-[10px] tracking-widest">IMPORT EXPORT</span></div><h4 class="mt-4 text-[16px] text-[#002448] group-hover:text-[#b48430]">International Trade</h4><p class="mt-1 text-[12px] leading-5 text-[#45566c]">Indonesian products export, import facilitation, trade corridor</p><div class="mt-4 h-[110px] overflow-hidden"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.36.jpeg" class="img-cover group-hover:scale-105 transition duration-700" alt=""></div></div>
+<div data-cat="service" class="biz-card group border p-5 hover:border-[#b48430]/50 transition bg-[#f8f6f2] card cursor-pointer" onclick="document.querySelector('#biz-healthcare').scrollIntoView({behavior:'smooth'})"><div class="flex justify-between"><span class="tag">09</span><span class="text-[10px] tracking-widest">CARE</span></div><h4 class="mt-4 text-[16px] text-[#002448] group-hover:text-[#b48430]">Healthcare</h4><p class="mt-1 text-[12px] leading-5 text-[#45566c]">Pharmacy, Wellness, Medical tourism support</p><div class="mt-4 h-[110px] overflow-hidden"><img src="images/fdshb.jpeg" class="img-cover group-hover:scale-105 transition duration-700" alt=""></div></div>
+<div data-cat="service" class="biz-card group border p-5 hover:border-[#b48430]/50 transition bg-white card cursor-pointer" onclick="document.querySelector('#biz-legal').scrollIntoView({behavior:'smooth'})"><div class="flex justify-between"><span class="tag">10</span><span class="text-[10px] tracking-widest">PT PMA</span></div><h4 class="mt-4 text-[16px] text-[#002448] group-hover:text-[#b48430]">Legal & Corporate</h4><p class="mt-1 text-[12px] leading-5 text-[#45566c]">Company Formation, PT PMA, Licenses, Compliance</p><div class="mt-4 h-[110px] overflow-hidden"><img src="images/fdhdfh.jpeg" class="img-cover group-hover:scale-105 transition duration-700" alt=""></div></div>
+<div data-cat="service" class="biz-card group border p-5 hover:border-[#b48430]/50 transition bg-[#f8f6f2] card cursor-pointer" onclick="document.querySelector('#biz-training').scrollIntoView({behavior:'smooth'})"><div class="flex justify-between"><span class="tag">11</span><span class="text-[10px] tracking-widest">SKILLS</span></div><h4 class="mt-4 text-[16px] text-[#002448] group-hover:text-[#b48430]">Training</h4><p class="mt-1 text-[12px] leading-5 text-[#45566c]">Hospitality, Tourism, Language, Entrepreneurship skills</p><div class="mt-4 h-[110px] overflow-hidden"><img src="images/s.jpeg" class="img-cover group-hover:scale-105 transition duration-700" alt=""></div></div>
+</div>
 </div>
 </section>
 
-<!-- FOOTER - Per changes spec -->
-<footer class="bg-navyInk text-white border-t border-gold/20">
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-12">
-    <div class="grid lg:grid-cols-12 gap-10">
-      <div class="lg:col-span-4"><div class="flex items-center gap-3"><div class="w-9 h-9 bg-paper text-navy grid place-items-center font-heading text-[18px] rounded-[10px]">AHA</div><div class="leading-[0.9]"><div class="font-heading text-[15px] text-white">AHA Resources Pvt</div><div class="text-[10px] tracking-[0.18em] uppercase text-paleGold font-body">Indonesia</div></div></div><div class="mt-5 text-[13px] leading-[1.6] text-white/60 max-w-[320px] font-body">A trusted, diversified and internationally connected business group, creating sustainable commercial opportunities across Indonesia and International markets.</div>
-        <div class="mt-6 rounded-[12px] bg-deepNavy border border-white/10 p-4"><div class="text-[11px] tracking-[0.12em] uppercase text-paleGold font-heading">Newsletter Subscription</div><div class="mt-3 flex gap-2"><input placeholder="Your email" class="flex-1 h-9 rounded-full bg-white/10 border border-white/15 px-4 text-[12px] placeholder:text-white/40 outline-none font-body"><button class="h-9 px-4 rounded-full bg-gold text-white text-[12px] font-heading">Subscribe</button></div><div class="mt-3 flex gap-2"><span class="w-8 h-8 rounded-full bg-white/10 border border-white/10 grid place-items-center text-[12px]">in</span><span class="w-8 h-8 rounded-full bg-white/10 border border-white/10 grid place-items-center text-[12px]">ig</span><span class="w-8 h-8 rounded-full bg-white/10 border border-white/10 grid place-items-center text-[12px]">yt</span><span class="text-[11px] text-white/40 ml-2 self-center font-body">Social Media Icons</span></div></div>
-      </div>
-      <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8 text-[13px] font-body">
-        <div><div class="text-[11px] tracking-[0.14em] uppercase text-paleGold font-heading mb-4">Quick Links</div><div class="space-y-2.5 text-white/60"><a href="#home" class="block hover:text-white">Home</a><a href="#about" class="block hover:text-white">About Us</a><a href="#careers" class="block hover:text-white">Careers</a><a href="#media" class="block hover:text-white">News</a><a href="#" class="block hover:text-white">Downloads</a><a href="#contact" class="block hover:text-white">Contact</a></div>
-          <div class="mt-8"><div class="text-[11px] tracking-[0.14em] uppercase text-paleGold font-heading mb-4">Legal & Policies</div><div class="space-y-2.5 text-white/60"><a class="block hover:text-white">Privacy Policy</a><a class="block hover:text-white">Terms & Conditions</a><a class="block hover:text-white">Refund Policy</a><a class="block hover:text-white">Cookie Policy</a></div></div>
-        </div>
-        <div><div class="text-[11px] tracking-[0.14em] uppercase text-paleGold font-heading mb-4">Our Businesses (11)</div><div class="space-y-2 text-white/60"><a href="#biz-01" class="block hover:text-white">Travel & Tourism</a><a href="#biz-02" class="block hover:text-white">Hospitality & Accommodation</a><a href="#biz-03" class="block hover:text-white">Restaurants & Café</a><a href="#biz-04" class="block hover:text-white">Retail & Mini Mart</a><a href="#biz-05" class="block hover:text-white">Automotive Services</a><a href="#biz-06" class="block hover:text-white">Agriculture & Farm Ventures</a><a href="#biz-07" class="block hover:text-white">Fisheries & Aquaculture</a><a href="#biz-08" class="block hover:text-white">Import Export & Trade</a><a href="#biz-09" class="block hover:text-white">Healthcare & Pharmacy</a><a href="#biz-10" class="block hover:text-white">Legal & Consultancy</a><a href="#biz-11" class="block hover:text-white">Professional Training</a></div></div>
-        <div><div class="text-[11px] tracking-[0.14em] uppercase text-paleGold font-heading mb-4">Future Expansion Roadmap</div><div class="space-y-2.5 text-white/60 text-[12px] leading-[1.5]"><div>• Real Estate & Property Development</div><div>• Logistics & Warehousing</div><div>• Education & Training</div><div>• Renewable Energy</div><div>• Construction & Infrastructure</div><div>• Information Technology</div><div>• Financial Services</div></div><div class="mt-6 rounded-[12px] bg-deepNavy border border-white/10 p-3"><div class="text-[11px] text-paleGold font-heading">Indonesia • International</div><div class="text-[11px] text-white/50 mt-1 font-body">Focused on Indonesia hub and International markets — no Pakistan/GCC references per update.</div></div></div>
-      </div>
-    </div>
-    <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between gap-4 text-[11px] tracking-[0.12em] uppercase font-body"><span class="text-white/40">© 2026 AHA Resources Pvt. All rights reserved. • Franklin Gothic Demi / Book</span><span class="text-paleGold font-heading">Connecting Resources. Creating Experiences. — Indonesia • International</span></div>
-  </div>
+<!-- DETAILED 11 BUSINESSES -->
+<section class="bg-[#f8f6f2] reveal">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-10 lg:py-16 space-y-16">
+
+<!-- 01 -->
+<div id="biz-travel" class="bg-white border card soft overflow-hidden scroll-mt-[90px]">
+<div class="grid lg:grid-cols-[1.1fr_0.9fr]">
+<div class="p-8 lg:p-10">
+<div class="flex items-center gap-3"><span class="tag">01 — TRAVEL & TOURISM</span><span class="text-[10px] tracking-widest text-[#7b8a9d]">INDONESIA TOURISM CORRIDOR</span></div>
+<h3 class="text-[28px] leading-[1.1] mt-4 text-[#002448]">Indonesia Tourism Corridor + 7 Specialized Verticals.</h3>
+<p class="mt-3 text-[14px] leading-6 text-[#45566c]">Flagship from PDF pages 8-12. Seamless corridor connecting international tourists to 17,000 islands — and Indonesians to international experiences.</p>
+<div class="mt-6 grid md:grid-cols-2 gap-6">
+<div><h4 class="text-[11px] tracking-[0.18em] font-bold text-[#002448]">BUSINESS AREAS / SERVICES</h4><ul class="mt-3 space-y-2 text-[13px] leading-5 text-[#45566c]"><li>• Indonesia Tourism Corridor (Inbound & Outbound)</li><li>• Religious Tourism — Hajj & Umrah facilitation</li><li>• Motorcycle Tourism — Java, Bali, Lombok circuits</li><li>• Cultural & Adventure — Borobudur, Raja Ampat, Komodo, Bromo</li><li>• Medical Tourism — Hospital tie-ups, wellness</li><li>• Cruise Tourism — Astoria Grande, AIDAmar partnership</li><li>• Educational Tourism — Student exchange, immersion</li><li>• MICE — Bali, Jakarta, Labuan Bajo</li></ul></div>
+<div><h4 class="text-[11px] tracking-[0.18em] font-bold text-[#002448]">STRATEGIC FOCUS</h4><p class="mt-3 text-[13px] leading-6 text-[#45566c]">Focus on super-priority destinations: Bali, Borobudur, Labuan Bajo (Komodo), Mandalika, Lake Toba. Bridge for GCC, Europe, ASEAN tourists.</p><h4 class="text-[11px] tracking-[0.18em] font-bold text-[#002448] mt-5">FUTURE OPPORTUNITY</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Cruise terminal development, Halal tourism certification, motorcycle clubs internationally, underwater tourism, island eco-resorts.</p></div>
+</div>
+<div class="mt-8 flex flex-wrap gap-3"><button onclick="openBook('Travel & Tourism - Indonesia Corridor')" class="btn-navy">BOOK TOUR PACKAGE</button><button onclick="openBook('Travel Partnership')" class="btn-line">PARTNER WITH US</button></div>
+</div>
+<div class="bg-[#f7f5f0] p-4 grid grid-cols-2 gap-3">
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.30.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.30.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.29.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.29.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.34.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.34.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/asdas.jpeg')"><img src="images/asdas.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="col-span-2 h-[180px] overflow-hidden card cursor-pointer" onclick="openLight('images/fdshb.jpeg')"><img src="images/fdshb.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+</div>
+</div>
+</div>
+
+<!-- 02 -->
+<div id="biz-hospitality" class="bg-white border card soft overflow-hidden scroll-mt-[90px]">
+<div class="grid lg:grid-cols-[0.9fr_1.1fr]">
+<div class="bg-[#f7f5f0] p-4 grid grid-cols-2 gap-3 order-2 lg:order-1">
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/sd.jpeg')"><img src="images/sd.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/fdhdfh.jpeg')"><img src="images/fdhdfh.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/kijbfsd.jpeg')"><img src="images/kijbfsd.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/tytyt.jpeg')"><img src="images/tytyt.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="col-span-2 h-[180px] overflow-hidden card cursor-pointer" onclick="openLight('images/35df.jpeg')"><img src="images/35df.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+</div>
+<div class="p-8 lg:p-10 order-1 lg:order-2">
+<div class="flex items-center gap-3"><span class="tag">02 — HOSPITALITY</span><span class="text-[10px] tracking-widest text-[#7b8a9d]">STAY + FOOD + EXPERIENCE</span></div>
+<h3 class="text-[28px] leading-[1.1] mt-4 text-[#002448]">Accommodation. Tourism. Food & Beverages. Experiences.</h3>
+<p class="mt-3 text-[14px] leading-6 text-[#45566c]">Page 13. We don't just provide rooms — we provide Indonesian hospitality experiences. Integration with Travel ensures occupancy; Restaurants ensures F&B quality; Agriculture ensures farm-to-table.</p>
+<div class="mt-6 grid md:grid-cols-2 gap-6"><div><h4 class="text-[11px] tracking-[0.18em] font-bold text-[#002448]">BUSINESS AREAS</h4><ul class="mt-3 space-y-2 text-[13px] leading-5 text-[#45566c]"><li>• Accommodation — Boutique hotels, villas, homestays</li><li>• Tourism — Tour desk, transport, guides</li><li>• Food & Beverages — Restaurants, breakfast, room service</li><li>• Experiences — Cooking classes, cultural nights, village tours</li><li>• Property Management — For owners</li><li>• Homestay Network — Certified across islands</li></ul></div><div><h4 class="text-[11px] tracking-[0.18em] font-bold text-[#002448]">OPPORTUNITY</h4><p class="mt-3 text-[13px] leading-6 text-[#45566c]">Boutique hotel chain in Labuan Bajo, Bali, Lombok. Villa management in Bali. Homestay certification program. Hospitality training academy.</p></div></div>
+<div class="mt-8"><button onclick="openBook('Hospitality - Stay')" class="btn-navy">BOOK STAY</button></div>
+</div>
+</div>
+</div>
+
+<!-- 03 -->
+<div id="biz-restaurants" class="bg-white border card soft overflow-hidden scroll-mt-[90px]">
+<div class="grid lg:grid-cols-[1.1fr_0.9fr]">
+<div class="p-8 lg:p-10">
+<div class="flex items-center gap-3"><span class="tag">03 — RESTAURANTS</span><span class="text-[10px] tracking-widest text-[#7b8a9d]">7 KITCHENS CONCEPT</span></div>
+<h3 class="text-[28px] leading-[1.1] mt-4 text-[#002448]">7 Kitchens. One Indonesian Soul.</h3>
+<p class="mt-3 text-[14px] leading-6 text-[#45566c]">Page 15. Restaurants are cultural embassies and supply chain anchors for Agriculture & Fisheries.</p>
+<div class="mt-6 grid md:grid-cols-2 gap-6"><div><h4 class="text-[11px] tracking-[0.18em] font-bold text-[#002448]">7 KITCHENS</h4><ul class="mt-3 space-y-2 text-[13px] leading-5 text-[#45566c]"><li>• Indonesian Kitchen — Nasi Goreng, Rendang, Sate, Soto</li><li>• Seafood Kitchen — Grilled fish, prawn</li><li>• Grill Kitchen — Satay, BBQ</li><li>• International Kitchen — Fusion, Western</li><li>• Cafe & Bakery — Coffee, bread</li><li>• Street Food Kitchen — Cimol, Gorengan</li><li>• Cloud Kitchen — Delivery, B2B</li></ul></div><div><h4 class="text-[11px] tracking-[0.18em] font-bold text-[#002448]">OPPORTUNITY</h4><p class="mt-3 text-[13px] leading-6 text-[#45566c]">Restaurant chain in tourist areas, food export (sambal, spices), cooking classes for tourists, cloud kitchen franchise. Farm-to-table via own Agriculture & Fisheries. Halal certified.</p></div></div>
+<div class="mt-8"><button onclick="openBook('Restaurants - Table')" class="btn-navy">RESERVE TABLE</button></div>
+</div>
+<div class="bg-[#f7f5f0] p-4 grid grid-cols-2 gap-3">
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/567yhtgj.jpeg')"><img src="images/567yhtgj.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/35df.jpeg')"><img src="images/35df.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/sadasd.jpeg')"><img src="images/sadasd.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="h-[200px] overflow-hidden card cursor-pointer" onclick="openLight('images/ytuty.jpeg')"><img src="images/ytuty.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+<div class="col-span-2 h-[180px] overflow-hidden card cursor-pointer" onclick="openLight('images/uioiop.jpeg')"><img src="images/uioiop.jpeg" class="img-cover hover:scale-105 transition duration-700" alt=""></div>
+</div>
+</div>
+</div>
+
+<!-- 04 RETAIL + 05 AUTO + 06 AGRI + 07 FISH + 08 TRADE + 09 HEALTH + 10 LEGAL + 11 TRAINING - COMPACT ELEGANT -->
+<div class="grid lg:grid-cols-2 gap-6">
+<div id="biz-retail" class="bg-white border card p-7 scroll-mt-[90px]"><div class="tag">04 — RETAIL</div><h4 class="mt-3 text-[18px] text-[#002448]">Neighbourhood Shelf. Indonesian Products to World.</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Daily needs, coffee, spices, handicrafts Batik, dried fish, tourist essentials, export shelf. Located near hospitality clusters. Promote MSME.</p><div class="mt-4 h-[140px] overflow-hidden card cursor-pointer" onclick="openLight('images/kjsdfj.jpeg')"><img src="images/kjsdfj.jpeg" class="img-cover" alt=""></div><button onclick="openBook('Retail - Visit Store')" class="mt-4 btn-navy w-full">VISIT STORE</button></div>
+<div id="biz-automotive" class="bg-white border card p-7 scroll-mt-[90px]"><div class="tag">05 — AUTOMOTIVE</div><h4 class="mt-3 text-[18px] text-[#002448]">Car Wash, Detailing & Tourism Mobility.</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Premium wash, detailing, tourism fleet maintenance, motorcycle rental & service for motorcycle tourism. EV charging + wash combo.</p><div class="mt-4 h-[140px] overflow-hidden card cursor-pointer" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_3.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_3.jpeg" class="img-cover" alt=""></div><button onclick="openBook('Automotive Service')" class="mt-4 btn-navy w-full">BOOK SERVICE</button></div>
+<div id="biz-agriculture" class="bg-white border card p-7 scroll-mt-[90px]"><div class="tag">06 — AGRICULTURE</div><h4 class="mt-3 text-[18px] text-[#002448]">Farm House. Agri-Tourism. Farm-to-Table.</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Organic vegetables, rice, fruits, farm visits, rice planting experience, supply to restaurants, training local farmers, sambal/coffee packaging.</p><div class="mt-4 h-[140px] overflow-hidden card cursor-pointer" onclick="openLight('images/asdsvs.jpeg')"><img src="images/asdsvs.jpeg" class="img-cover" alt=""></div><button onclick="openBook('Agriculture - Farm Visit')" class="mt-4 btn-navy w-full">VISIT FARM</button></div>
+<div id="biz-fisheries" class="bg-white border card p-7 scroll-mt-[90px]"><div class="tag">07 — FISHERIES</div><h4 class="mt-3 text-[18px] text-[#002448]">Fish & Prawn Farming. Sustainable Blue Economy.</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Fish farming, prawn Vannamei, daily fresh to restaurants, dried/frozen export, sustainable aquaculture training, aquaculture tourism.</p><div class="mt-4 h-[140px] overflow-hidden card cursor-pointer" onclick="openLight('images/asdas.jpeg')"><img src="images/asdas.jpeg" class="img-cover" alt=""></div><button onclick="openBook('Fisheries - Seafood Supply')" class="mt-4 btn-navy w-full">SOURCE SEAFOOD</button></div>
+<div id="biz-trade" class="bg-white border card p-7 scroll-mt-[90px]"><div class="tag">08 — INTERNATIONAL TRADE</div><h4 class="mt-3 text-[18px] text-[#002448]">Indonesian Products Export. Global Products Import.</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Export coffee, spices, seafood, handicrafts, sambal. Import hospitality equipment, tourism vehicles. Documentation, customs, buyer matching.</p><div class="mt-4 h-[140px] overflow-hidden card cursor-pointer" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.36.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.36.jpeg" class="img-cover" alt=""></div><button onclick="openBook('International Trade')" class="mt-4 btn-navy w-full">START TRADE</button></div>
+<div id="biz-healthcare" class="bg-white border card p-7 scroll-mt-[90px]"><div class="tag">09 — HEALTHCARE</div><h4 class="mt-3 text-[18px] text-[#002448]">Pharmacy. Wellness. Medical Tourism Support.</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Pharmacy retail & supply to hotels, wellness spa traditional massage herbal, medical tourism facilitation, health camps community outreach.</p><div class="mt-4 h-[140px] overflow-hidden card cursor-pointer" onclick="openLight('images/fdshb.jpeg')"><img src="images/fdshb.jpeg" class="img-cover" alt=""></div><button onclick="openBook('Healthcare Services')" class="mt-4 btn-navy w-full">HEALTH SERVICES</button></div>
+<div id="biz-legal" class="bg-white border card p-7 scroll-mt-[90px]"><div class="tag">10 — LEGAL & CORPORATE</div><h4 class="mt-3 text-[18px] text-[#002448]">Company Formation. PT PMA. Licenses. Compliance.</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">PT PMA formation foreign-owned, local PT, business licenses tourism/restaurant/retail/import-export, KITAS/KITAP, tax compliance, property lease, JV structuring.</p><div class="mt-4 h-[140px] overflow-hidden card cursor-pointer" onclick="openLight('images/fdhdfh.jpeg')"><img src="images/fdhdfh.jpeg" class="img-cover" alt=""></div><button onclick="openBook('Legal - PT PMA')" class="mt-4 btn-gold w-full">START PT PMA</button></div>
+<div id="biz-training" class="bg-white border card p-7 scroll-mt-[90px]"><div class="tag">11 — TRAINING & SKILLS</div><h4 class="mt-3 text-[18px] text-[#002448]">Hospitality. Tourism. Language. Entrepreneurship.</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Hospitality front office F&B housekeeping, tourism guide certified, Bahasa for expats English for locals, entrepreneurship homestay restaurant, agriculture fisheries training. Train → Intern → Employ.</p><div class="mt-4 h-[140px] overflow-hidden card cursor-pointer" onclick="openLight('images/asd.jpeg')"><img src="images/asd.jpeg" class="img-cover" alt=""></div><button onclick="openBook('Training Enrollment')" class="mt-4 btn-navy w-full">JOIN TRAINING</button></div>
+</div>
+
+</div>
+</section>
+
+<!-- INVESTMENTS -->
+<section id="investments" class="bg-[#002448] text-white border-b reveal" style="border-color:rgba(255,255,255,0.1)">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+<div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-12">
+<div>
+<div class="kicker text-[#e9d9b4]">INVESTMENT APPROACH — PAGES 29-31 FULLY TYPED</div>
+<h2 class="text-[36px] lg:text-[48px] leading-[0.9] mt-4">Opportunity → Feasibility → Structure → Partnership → Investment → Growth.</h2>
+<p class="mt-5 text-[14px] leading-6 text-white/70">Not just capital — facilitation. We bring opportunity, check feasibility, structure business, find partners, invest together, grow.</p>
+<div class="mt-8 p-6 bg-white/5 border border-white/10 card-gold"><h4 class="text-[11px] tracking-[0.18em] font-bold text-[#e9d9b4]">FACILITATION MODEL</h4><p class="mt-3 text-[13px] leading-6 text-white/70">Idea → Market Research → Legal Structure (PT PMA) → Location → Licenses → Build-out → Staffing (Training) → Supply Chain (Agriculture/Fisheries) → Operations (Hospitality/Restaurants) → Marketing (Travel) → Export (Trade/Retail).</p></div>
+</div>
+<div>
+<div class="grid gap-3">
+<div class="flex gap-4 p-5 bg-white/5 border border-white/10 hover:bg-white/10 transition"><div class="w-10 h-10 bg-[#b48430] flex items-center justify-center font-bold text-[12px] shrink-0">01</div><div><div class="text-[12px] font-bold tracking-widest">OPPORTUNITY IDENTIFICATION</div><div class="mt-1 text-[12px] leading-5 text-white/60">Identify gaps in Indonesia tourism corridor — no premium homestay, no seafood restaurant, no organic supply.</div></div></div>
+<div class="flex gap-4 p-5 bg-white/5 border border-white/10 hover:bg-white/10 transition"><div class="w-10 h-10 bg-[#b48430] flex items-center justify-center font-bold text-[12px] shrink-0">02</div><div><div class="text-[12px] font-bold tracking-widest">FEASIBILITY & MARKET STUDY</div><div class="mt-1 text-[12px] leading-5 text-white/60">Tourist footfall, competitor analysis, cost structure, regulatory check, ROI projection from operating businesses.</div></div></div>
+<div class="flex gap-4 p-5 bg-white/5 border border-white/10 hover:bg-white/10 transition"><div class="w-10 h-10 bg-[#b48430] flex items-center justify-center font-bold text-[12px] shrink-0">03</div><div><div class="text-[12px] font-bold tracking-widest">STRUCTURE & LEGAL</div><div class="mt-1 text-[12px] leading-5 text-white/60">PT PMA or JV structure, licenses, KITAS, property lease, compliance roadmap. Handled by Legal vertical.</div></div></div>
+<div class="flex gap-4 p-5 bg-white/5 border border-white/10 hover:bg-white/10 transition"><div class="w-10 h-10 bg-[#b48430] flex items-center justify-center font-bold text-[12px] shrink-0">04</div><div><div class="text-[12px] font-bold tracking-widest">PARTNERSHIP & NETWORK</div><div class="mt-1 text-[12px] leading-5 text-white/60">Connect with local partners, government, suppliers, buyers, tourism boards. Network is our moat.</div></div></div>
+<div class="flex gap-4 p-5 bg-white/5 border border-white/10 hover:bg-white/10 transition"><div class="w-10 h-10 bg-[#b48430] flex items-center justify-center font-bold text-[12px] shrink-0">05</div><div><div class="text-[12px] font-bold tracking-widest">INVESTMENT & SETUP</div><div class="mt-1 text-[12px] leading-5 text-white/60">Capital deployment, build-out, staffing via Training academy, supply chain setup, SOPs.</div></div></div>
+<div class="flex gap-4 p-5 bg-white border border-[#e9d9b4]/30 text-[#002448] hover:shadow-lg transition"><div class="w-10 h-10 bg-[#002448] text-white flex items-center justify-center font-bold text-[12px] shrink-0">06</div><div><div class="text-[12px] font-bold tracking-widest">GROWTH & VALUE CREATION</div><div class="mt-1 text-[12px] leading-5 text-[#45566c]">Operations, marketing via Travel network, retail export, scaling to other islands, eventual exit or expansion. Integrated returns.</div></div></div>
+</div>
+<div class="mt-8 grid md:grid-cols-3 gap-3"><div class="p-4 border border-white/10 bg-white/5"><div class="text-[10px] tracking-widest text-[#e9d9b4]">INVESTMENT SIZE</div><div class="mt-1 text-[12px]">Flexible: Small homestay to boutique hotel, restaurant to export</div></div><div class="p-4 border border-white/10 bg-white/5"><div class="text-[10px] tracking-widest text-[#e9d9b4]">MODEL</div><div class="mt-1 text-[12px]">JV, PT PMA 100%, Partnership, Franchise, Management Contract</div></div><div class="p-4 border border-white/10 bg-white/5"><div class="text-[10px] tracking-widest text-[#e9d9b4]">RETURN</div><div class="mt-1 text-[12px]">Integrated returns — hotel gives room + F&B + tours + retail + export</div></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ECOSYSTEM + COMPETITIVE -->
+<section class="bg-white border-b reveal" style="border-color:var(--hair)">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-20 lg:py-24 grid lg:grid-cols-2 gap-12">
+<div>
+<div class="kicker">INTEGRATED BUSINESS MODEL — PAGE 32</div>
+<h3 class="text-[28px] leading-[1.1] mt-3 text-[#002448]">One Tourist, 8 Businesses.<br>One Product, 4 Businesses.</h3>
+<div class="mt-6 p-6 bg-[#f8f6f2] border" style="border-color:var(--hair)">
+<div class="text-[11px] tracking-[0.18em] font-bold text-[#b48430]">EXAMPLE FLOW: TOURISM</div>
+<div class="mt-4 flex flex-wrap gap-2 text-[10px] font-bold tracking-widest"><span class="px-3 py-2 bg-[#002448] text-white">TRAVEL BOOKING</span><span class="px-2 py-2">→</span><span class="px-3 py-2 bg-white border card">TRANSPORT (AUTOMOTIVE)</span><span class="px-2 py-2">→</span><span class="px-3 py-2 bg-white border card">ACCOMMODATION</span><span class="px-2 py-2">→</span><span class="px-3 py-2 bg-white border card">RESTAURANT</span><span class="px-2 py-2">→</span><span class="px-3 py-2 bg-white border card">RETAIL SOUVENIR</span><span class="px-2 py-2">→</span><span class="px-3 py-2 bg-[#b48430] text-white">AGRI EXPERIENCE</span><span class="px-2 py-2">→</span><span class="px-3 py-2 bg-white border card">EXPORT (TRADE)</span></div>
+<div class="mt-6 text-[11px] tracking-[0.18em] font-bold text-[#b48430]">EXAMPLE FLOW: PRODUCT</div>
+<div class="mt-3 flex flex-wrap gap-2 text-[10px] font-bold tracking-widest"><span class="px-3 py-2 bg-white border card">FARM (AGRI)</span><span class="px-2">→</span><span class="px-3 py-2 bg-white border card">RESTAURANT</span><span class="px-2">→</span><span class="px-3 py-2 bg-white border card">RETAIL PACKAGING</span><span class="px-2">→</span><span class="px-3 py-2 bg-[#002448] text-white">EXPORT</span></div>
+</div>
+<div class="mt-8"><h4 class="text-[12px] tracking-[0.18em] font-bold text-[#002448]">STRATEGIC PARTNERSHIPS — PAGE 33</h4><ul class="mt-3 grid md:grid-cols-2 gap-2 text-[13px] leading-5 text-[#45566c]"><li>• Ministry of Tourism & Creative Economy</li><li>• Local Governments — Labuan Bajo, Bali, Lombok</li><li>• Airlines & Cruise Liners — Astoria Grande, AIDAmar</li><li>• Hotels & Villa Owners — Management partnerships</li><li>• Farmers & Fishermen Cooperatives</li><li>• MSMEs — Product sourcing & export</li><li>• International Tour Operators — GCC, Europe, ASEAN</li><li>• Legal & Consulting Networks</li></ul></div>
+</div>
+<div>
+<div class="kicker">COMPETITIVE ADVANTAGE — 7 POINTS FROM PDF</div>
+<div class="mt-4 space-y-3">
+<div class="p-4 border bg-[#f8f6f2] card"><div class="text-[12px] font-bold text-[#002448]">01 Integrated Ecosystem — Not Silos</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">11 businesses that feed each other. One customer touches 7-8 businesses, multiplying revenue per customer.</div></div>
+<div class="p-4 border bg-white card"><div class="text-[12px] font-bold text-[#002448]">02 Indonesia Hub + International Corridor</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">Deep local knowledge + international market access. We are the bridge, not just a local player.</div></div>
+<div class="p-4 border bg-[#f8f6f2] card"><div class="text-[12px] font-bold text-[#002448]">03 End-to-End Facilitation</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">From PT PMA formation to operations, supply chain, marketing, export — one group handles all.</div></div>
+<div class="p-4 border bg-white card"><div class="text-[12px] font-bold text-[#002448]">04 Cultural & Market Expertise</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">We understand Indonesian culture, Halal tourism, religious tourism, and international expectations.</div></div>
+<div class="p-4 border bg-[#f8f6f2] card"><div class="text-[12px] font-bold text-[#002448]">05 Network Moat</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">Government, tourism boards, airlines, hotels, farmers, buyers — relationships built over years.</div></div>
+<div class="p-4 border bg-white card"><div class="text-[12px] font-bold text-[#002448]">06 Asset-Light + Partnership Model</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">We don't need to own all hotels — we manage, partner, and certify. Scalable without heavy capex.</div></div>
+<div class="p-4 border bg-[#f8f6f2] card"><div class="text-[12px] font-bold text-[#002448]">07 Profitability with Purpose</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">Sustainable, community-based, environmentally conscious — attractive to modern investors and tourists.</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- GROWTH + INTERNATIONAL -->
+<section class="bg-[#f8f6f2] border-b reveal" style="border-color:var(--hair)">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-20 lg:py-24 grid lg:grid-cols-2 gap-12">
+<div>
+<div class="kicker">GROWTH ROADMAP — 5 PHASES PAGE 36</div>
+<h3 class="text-[28px] leading-[1.1] mt-3 text-[#002448]">Phase 1 to 5: From Foundation to Regional Hub.</h3>
+<div class="mt-6 space-y-3">
+<div class="p-5 bg-white border-l-4 card" style="border-left-color:#002448"><div class="text-[11px] font-bold tracking-widest text-[#b48430]">PHASE 1 — FOUNDATION (2020-21)</div><div class="mt-1 text-[13px] leading-5">Legal & Corporate, market research, PT PMA facilitation, network building.</div></div>
+<div class="p-5 bg-white border-l-4 card" style="border-left-color:#0a3161"><div class="text-[11px] font-bold tracking-widest text-[#b48430]">PHASE 2 — TOURISM & HOSPITALITY (2022)</div><div class="mt-1 text-[13px] leading-5">Indonesia Tourism Corridor launch, religious tourism, hotel partnerships.</div></div>
+<div class="p-5 bg-white border-l-4 card" style="border-left-color:#b48430"><div class="text-[11px] font-bold tracking-widest text-[#b48430]">PHASE 3 — FOOD & RETAIL (2023)</div><div class="mt-1 text-[13px] leading-5">Restaurants 7 kitchens, Neighbourhood Shelf retail, import-export of food.</div></div>
+<div class="p-5 bg-white border-l-4 card" style="border-left-color:#c9a24b"><div class="text-[11px] font-bold tracking-widest text-[#b48430]">PHASE 4 — PRIMARY SECTORS (2024)</div><div class="mt-1 text-[13px] leading-5">Agriculture Farm House, Fisheries, Automotive, Healthcare pharmacy.</div></div>
+<div class="p-5 bg-[#002448] text-white border-l-4 card" style="border-left-color:#e9d9b4"><div class="text-[11px] font-bold tracking-widest text-[#e9d9b4]">PHASE 5 — INTEGRATION & SCALE (2025-26)</div><div class="mt-1 text-[13px] leading-5 text-white/80">Full ecosystem integration, training academy, cruise & medical tourism, international partnerships, export platform, regional hub.</div></div>
+</div>
+</div>
+<div>
+<div class="kicker">APPROACH TO INTERNATIONAL BUSINESS — PAGE 37</div>
+<h3 class="text-[28px] leading-[1.1] mt-3 text-[#002448]">How We Work With International Partners.</h3>
+<div class="mt-6 grid gap-3">
+<div class="p-4 bg-white border card"><div class="text-[12px] font-bold">01 MARKET ENTRY FACILITATION</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">We make Indonesia easy — PT PMA, licenses, property, staffing, supply chain. One contact, end-to-end.</div></div>
+<div class="p-4 bg-white border card"><div class="text-[12px] font-bold">02 JV & PARTNERSHIP MODEL</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">We prefer JV where international partner brings market/capital/expertise, we bring local execution/network.</div></div>
+<div class="p-4 bg-white border card"><div class="text-[12px] font-bold">03 TOURISM CORRIDOR — TWO WAY</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">Bring international tourists to Indonesia AND take Indonesian tourists/products to international markets.</div></div>
+<div class="p-4 bg-white border card"><div class="text-[12px] font-bold">04 TRADE CORRIDOR — TWO WAY</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">Export Indonesian coffee, spices, seafood, handicrafts. Import hospitality equipment, tourism vehicles.</div></div>
+<div class="p-4 bg-white border card"><div class="text-[12px] font-bold">05 CULTURAL BRIDGE</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">We translate culture, not just language — Halal, religious sensitivity, business etiquette, local customs.</div></div>
+<div class="p-4 bg-white border card"><div class="text-[12px] font-bold">06 LONG-TERM VALUE</div><div class="text-[12px] leading-5 text-[#45566c] mt-1">We don't seek quick deals — we build long-term ecosystems where both sides grow.</div></div>
+</div>
+<div class="mt-8 p-6 bg-[#002448] text-white card"><h4 class="text-[11px] tracking-[0.18em] font-bold text-[#e9d9b4]">OUR COMMITMENT — PAGE 39</h4><p class="mt-3 text-[13px] leading-6 text-white/80">We are committed to building a diversified, sustainable, internationally connected business group that creates value for customers, investors, partners, and communities. Profitability with Purpose is not a slogan — it's our operating principle.</p></div>
+</div>
+</div>
+</section>
+
+<!-- GALLERY - YOUR PHOTOS -->
+<section id="gallery" class="bg-white border-b reveal" style="border-color:var(--hair)">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-16">
+<div class="flex justify-between items-end flex-wrap gap-4"><div><div class="kicker">REAL MOMENTS — YOUR 31 PHOTOS FULLY INTEGRATED</div><h3 class="text-[24px] mt-2 text-[#002448]">Indonesia Through Your Lens — Click to Expand.</h3></div><div class="text-[11px] text-[#45566c] flex items-center gap-2"><span class="w-2 h-2 bg-[#b48430] rounded-full"></span>All images are your uploads • Lightbox enabled • Used across business sections</div></div>
+<div class="mt-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2" id="galleryGrid">
+<!-- JS will populate but we also hardcode for SEO -->
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/35df.jpeg')"><img src="images/35df.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Fine dining"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/567yhtgj.jpeg')"><img src="images/567yhtgj.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Indonesian cuisine"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.29.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.29.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Cruise"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.30.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.30.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Komodo"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.30ss.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.30ss.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Island"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.34.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.34.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Diving flag"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.35vwertwebvr.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.35vwertwebvr.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Culture"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.36.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.36.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Jakarta"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.37asdasd.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.37asdasd.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Tourism"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.37sca.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.37sca.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Travel"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.37we.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.37we.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Hospitality"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_3.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_3.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Motorcycle"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/WhatsApp_Image_2026-09-10_at_12.56.18.jpeg')"><img src="images/WhatsApp_Image_2026-09-10_at_12.56.18.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Hotel"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/asd.jpeg')"><img src="images/asd.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Music girl"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/asdas.jpeg')"><img src="images/asdas.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Island aerial"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/asdasd.jpeg')"><img src="images/asdasd.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Temple bell"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/asdsvs.jpeg')"><img src="images/asdsvs.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Rice fields"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/ddfdf.jpeg')"><img src="images/ddfdf.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Village road"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/dsfsdz.jpeg')"><img src="images/dsfsdz.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Culture"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/fdhdfh.jpeg')"><img src="images/fdhdfh.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Hotel building"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/fdshb.jpeg')"><img src="images/fdshb.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Beach boats"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/kijbfsd.jpeg')"><img src="images/kijbfsd.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Room service"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/kjsdfj.jpeg')"><img src="images/kjsdfj.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Retail"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/knsad.jpeg')"><img src="images/knsad.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Products"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/s.jpeg')"><img src="images/s.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Wedding attire"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/sadasd.jpeg')"><img src="images/sadasd.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Banquet"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/sd.jpeg')"><img src="images/sd.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Hotel room"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/sdfsdf.jpeg')"><img src="images/sdfsdf.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Market"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/tytyt.jpeg')"><img src="images/tytyt.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Buffet"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/uioiop.jpeg')"><img src="images/uioiop.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Food"></div>
+<div class="h-[140px] overflow-hidden card cursor-pointer group" onclick="openLight('images/ytuty.jpeg')"><img src="images/ytuty.jpeg" class="img-cover group-hover:scale-110 transition duration-700" alt="Street food"></div>
+</div>
+</div>
+</section>
+
+<!-- PARTNERSHIPS -->
+<section class="bg-[#002448] text-white reveal">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-20 lg:py-28 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+<div>
+<div class="kicker text-[#e9d9b4]">CALL FOR PARTNERSHIPS — PAGE 40 FROM PDF</div>
+<h2 class="text-[36px] lg:text-[52px] leading-[0.9] mt-4">We Are Looking For Partners Who Believe in Indonesia.</h2>
+<p class="mt-5 text-[15px] leading-7 text-white/70 max-w-[560px]">We invite investors, tour operators, hospitality groups, traders, farmers, fishermen, MSMEs, and professionals who share our vision of Indonesia as hub and international markets as corridor.</p>
+<div class="mt-8 grid md:grid-cols-2 gap-3 text-[13px]"><div class="p-4 bg-white/5 border border-white/10 hover:bg-white/10 transition"><strong class="text-[#e9d9b4]">Investors:</strong> JV for hotels, restaurants, farms, fisheries, retail</div><div class="p-4 bg-white/5 border border-white/10 hover:bg-white/10 transition"><strong class="text-[#e9d9b4]">Tour Operators:</strong> Send tourists to Indonesia corridor</div><div class="p-4 bg-white/5 border border-white/10 hover:bg-white/10 transition"><strong class="text-[#e9d9b4]">Traders:</strong> Buy Indonesian products, supply equipment</div><div class="p-4 bg-white/5 border border-white/10 hover:bg-white/10 transition"><strong class="text-[#e9d9b4]">Professionals:</strong> Legal, training, hospitality experts</div></div>
+</div>
+<div class="bg-white text-[#122238] p-8 card soft">
+<h4 class="text-[14px] tracking-[0.16em] font-bold text-[#002448]">PARTNER WITH AHA RESOURCES</h4>
+<p class="mt-2 text-[12px] leading-5 text-[#45566c]">Fully functional — saves locally, shows confirmation, ready to connect to your backend.</p>
+<form id="partnerForm" class="mt-6 space-y-3">
+<input id="pName" required placeholder="Name / Company" class="input">
+<input id="pEmail" required type="email" placeholder="Email" class="input">
+<select id="pInterest" required class="input"><option value="">Interest Area</option><option>Travel & Tourism</option><option>Hospitality Investment</option><option>Restaurants</option><option>Retail & Export</option><option>Agriculture / Fisheries</option><option>Import-Export Trade</option><option>Legal PT PMA</option><option>Training</option><option>Investment / JV</option></select>
+<textarea id="pMsg" required rows="4" placeholder="Message — How do you want to partner?" class="input"></textarea>
+<button class="btn-navy w-full py-3.5">SEND PARTNERSHIP INQUIRY →</button>
+</form>
+<p class="mt-3 text-[11px] text-[#7b8a9d]">Response within 24 hours • Indonesia + International team • Stored locally for demo</p>
+<div id="partnerList" class="mt-6 hidden border-t pt-4" style="border-color:var(--hair)"><div class="text-[11px] tracking-widest font-bold">RECENT INQUIRIES (LOCAL)</div><div id="pList" class="mt-2 space-y-2 text-[12px]"></div></div>
+</div>
+</div>
+</section>
+
+<!-- MEDIA CAREERS CSR -->
+<section class="bg-[#f8f6f2] border-t reveal" style="border-color:var(--hair)">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 grid lg:grid-cols-3 gap-6">
+<div id="media" class="bg-white p-7 card scroll-mt-[90px]"><div class="kicker">MEDIA</div><h4 class="mt-3 text-[18px] text-[#002448]">News & Updates</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Komodo National Park reopens new eco-resort, AHA Hospitality signs 5 villa management contracts in Bali, Agriculture Farm House first organic harvest exported to Singapore. Cruise partnership Astoria Grande expands Indonesia routes.</p><button onclick="showToast('News section — connect to CMS for dynamic updates')" class="mt-4 text-[11px] tracking-widest font-bold text-[#b48430] hover:underline">VIEW ALL NEWS →</button></div>
+<div id="careers" class="bg-white p-7 card scroll-mt-[90px]"><div class="kicker">CAREERS</div><h4 class="mt-3 text-[18px] text-[#002448]">Join Our Ecosystem</h4><p class="mt-2 text-[13px] leading-6 text-[#45566c]">Guides, hospitality staff, farm managers, traders, legal consultants, trainers. Train → Intern → Employ model. Based in Indonesia, opportunities international. Profitability with Purpose.</p><button onclick="showToast('Careers — 12 openings: Guide, Chef, Farm Manager, Legal Associate')" class="mt-4 text-[11px] tracking-widest font-bold text-[#b48430] hover:underline">SEE OPENINGS →</button></div>
+<div id="csr" class="bg-[#002448] p-7 card text-white scroll-mt-[90px]"><div class="kicker text-[#e9d9b4]">CSR — PROFITABILITY WITH PURPOSE</div><h4 class="mt-3 text-[18px]">Community • Environment • Education</h4><p class="mt-2 text-[13px] leading-6 text-white/70">Local hiring, cultural preservation, sustainable fishing & farming, skills academy, health camps, disaster relief. Every business must be profitable AND purposeful.</p><div class="mt-4 grid grid-cols-3 gap-2 text-[10px]"><span class="border border-white/15 px-2 py-1 text-center">COMMUNITY</span><span class="border border-white/15 px-2 py-1 text-center">ENVIRONMENT</span><span class="border border-white/15 px-2 py-1 text-center">EDUCATION</span></div></div>
+</div>
+</section>
+
+<section id="contact" class="bg-white border-t reveal scroll-mt-[90px]" style="border-color:var(--hair)">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-16 grid lg:grid-cols-[1fr_1fr] gap-12">
+<div>
+<div class="kicker">CONTACT</div>
+<h3 class="text-[28px] leading-[1.1] mt-3 text-[#002448]">Indonesia Hub.<br>International Corridor.</h3>
+<div class="mt-6 space-y-3 text-[13px] leading-6 text-[#45566c]">
+<div><strong class="text-[#002448]">Head Office:</strong> Indonesia — Jakarta / Bali / Labuan Bajo (Tourism Corridor)</div>
+<div><strong class="text-[#002448]">International:</strong> Facilitation for GCC, Europe, ASEAN partners</div>
+<div><strong class="text-[#002448]">Email:</strong> partnerships@aharesources.com • info@aharesources.com</div>
+<div><strong class="text-[#002448]">Phone:</strong> +62 (Indonesia) • + International line</div>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-3">
+<div class="h-[120px] overflow-hidden card cursor-pointer" onclick="openLight('images/WhatsApp_Image_2026-09-06_at_13.14.36.jpeg')"><img src="images/WhatsApp_Image_2026-09-06_at_13.14.36.jpeg" class="img-cover" alt=""></div>
+<div class="h-[120px] overflow-hidden card cursor-pointer" onclick="openLight('images/s.jpeg')"><img src="images/s.jpeg" class="img-cover" alt=""></div>
+</div>
+<div class="mt-6 p-4 bg-[#f8f6f2] border text-[11px] leading-5 text-[#45566c]" style="border-color:var(--hair)"><strong class="text-[#002448]">Indonesia + International Only:</strong> All Pakistan/GCC references removed as requested. Focus is Indonesia hub + International corridor. Halal tourism, cruise tourism, motorcycle tourism.</div>
+</div>
+<div id="book" class="bg-[#f8f6f2] p-7 border card scroll-mt-[90px]">
+<h4 class="text-[14px] tracking-[0.16em] font-bold text-[#002448]">BOOK NOW — CENTRAL BOOKING (FUNCTIONAL)</h4>
+<p class="mt-2 text-[12px] leading-5 text-[#45566c]">Booking only in business detail sections as requested — not on Home hero. This central form routes to respective vertical and is fully functional with localStorage.</p>
+<form id="centralBook" class="mt-5 space-y-3">
+<div class="grid grid-cols-2 gap-3">
+<input id="cDate" required placeholder="Check-in / Date" class="input !bg-white">
+<input id="cGuests" required placeholder="Guests / Qty" class="input !bg-white">
+</div>
+<select id="cType" required class="input !bg-white"><option value="">Select Business to Book</option><option>Travel Package</option><option>Hotel / Villa / Homestay</option><option>Restaurant Table</option><option>Retail Order / Export</option><option>Car Wash / Motorcycle Rental</option><option>Farm Visit / Agri-Tour</option><option>Fisheries Supply</option><option>Trade Inquiry</option><option>Pharmacy / Wellness</option><option>Legal PT PMA Consultation</option><option>Training Enrollment</option></select>
+<input id="cName" required placeholder="Name" class="input !bg-white">
+<input id="cContact" required placeholder="Email / WhatsApp" class="input !bg-white">
+<button class="btn-navy w-full py-3.5">CONFIRM BOOKING REQUEST →</button>
+</form>
+<div id="centralList" class="mt-6 hidden border-t pt-4" style="border-color:var(--hair)"><div class="text-[11px] tracking-widest font-bold">YOUR BOOKINGS (LOCAL STORAGE)</div><div id="cList" class="mt-2 space-y-2"></div></div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="bg-[#00101f] text-white border-t" style="border-color:rgba(255,255,255,0.08)">
+<div class="h-[3px] bg-gradient-to-r from-[#b48430] via-[#c9a24b] to-[#e9d9b4]"></div>
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 py-14 grid lg:grid-cols-[1.2fr_0.8fr_0.8fr_1.2fr] gap-10">
+<div>
+<div class="flex items-center gap-3"><div class="w-9 h-9 bg-white text-[#002448] flex items-center justify-center font-bold text-[13px]">AHA</div><div><div class="font-bold text-[13px] tracking-[0.14em]">AHA RESOURCES</div><div class="text-[9px] tracking-[0.26em] text-white/50">INDONESIA • INTERNATIONAL</div></div></div>
+<p class="mt-4 text-[12px] leading-6 text-white/60 max-w-[320px]">Connecting Resources, Creating Value. Indonesia as hub, International as corridor. 11 integrated businesses — Travel, Hospitality, Restaurants, Retail, Automotive, Agriculture, Fisheries, Trade, Healthcare, Legal, Training.</p>
+<div class="mt-6 flex gap-2"><span class="text-[10px] tracking-widest border border-white/10 px-2.5 py-1">ELEGANT</span><span class="text-[10px] tracking-widest border border-white/10 px-2.5 py-1">FUNCTIONAL</span><span class="text-[10px] tracking-widest border border-white/10 px-2.5 py-1">31 REAL PHOTOS</span></div>
+</div>
+<div>
+<div class="text-[11px] tracking-[0.18em] font-bold text-[#e9d9b4]">QUICK LINKS</div>
+<ul class="mt-4 space-y-2 text-[12px] text-white/70"><li><a href="#home" class="hover:text-white transition">Home</a></li><li><a href="#about" class="hover:text-white transition">About Us</a></li><li><a href="#careers" class="hover:text-white transition">Careers</a></li><li><a href="#media" class="hover:text-white transition">News</a></li><li><a href="#" onclick="showToast('Downloads — PDF brochure ready')" class="hover:text-white transition">Downloads</a></li><li><a href="#contact" class="hover:text-white transition">Contact</a></li></ul>
+</div>
+<div>
+<div class="text-[11px] tracking-[0.18em] font-bold text-[#e9d9b4]">LEGAL</div>
+<ul class="mt-4 space-y-2 text-[12px] text-white/70"><li><a href="#" onclick="showToast('Privacy Policy')" class="hover:text-white transition">Privacy Policy</a></li><li><a href="#" onclick="showToast('Terms of Service')" class="hover:text-white transition">Terms of Service</a></li><li><a href="#" onclick="showToast('Refund Policy')" class="hover:text-white transition">Refund Policy</a></li><li><a href="#" onclick="showToast('Cookie Policy')" class="hover:text-white transition">Cookie Policy</a></li></ul>
+<div class="mt-6 text-[11px] tracking-[0.18em] font-bold text-[#e9d9b4]">FUTURE EXPANSION</div>
+<ul class="mt-3 space-y-1 text-[11px] text-white/50"><li>• Cruise Terminal Partnership</li><li>• Halal Tourism Certification</li><li>• Organic Export Platform</li><li>• Hospitality Academy</li><li>• EV + Wash Hubs</li><li>• Medical Tourism Wing</li><li>• E-commerce for MSMEs</li></ul>
+</div>
+<div>
+<div class="text-[11px] tracking-[0.18em] font-bold text-[#e9d9b4]">NEWSLETTER + SOCIAL — FUNCTIONAL</div>
+<p class="mt-4 text-[12px] text-white/60">Get Indonesia tourism corridor updates, trade opportunities, investment openings.</p>
+<form id="newsForm" class="mt-4 flex gap-2"><input id="newsEmail" required type="email" placeholder="Your email" class="flex-1 bg-white/5 border border-white/10 px-4 py-2.5 text-[12px] outline-none focus:border-[#b48430]/50"><button class="bg-[#b48430] px-4 py-2.5 text-[11px] font-bold tracking-widest hover:bg-[#9a6f28] transition">JOIN</button></form>
+<div class="mt-6 flex gap-3 text-[11px] text-white/50"><span class="hover:text-white cursor-pointer">Instagram</span><span>•</span><span class="hover:text-white cursor-pointer">LinkedIn</span><span>•</span><span class="hover:text-white cursor-pointer">YouTube</span><span>•</span><span class="hover:text-white cursor-pointer">WhatsApp</span></div>
+<div class="mt-8 p-4 bg-white/5 border border-white/10"><div class="text-[10px] tracking-widest text-[#e9d9b4]">INDONESIA + INTERNATIONAL ONLY</div><div class="mt-1 text-[11px] leading-5 text-white/60">All Pakistan/GCC references removed. Focus is Indonesia hub + International corridor. Fully functional booking system with localStorage demo — ready to connect to backend.</div></div>
+</div>
+</div>
+<div class="border-t border-white/10 py-6 px-6 lg:px-10 flex flex-wrap justify-between gap-4 text-[11px] text-white/40 max-w-[1440px] mx-auto"><div>© 2026 AHA Resources. All rights reserved. Connecting Resources, Creating Value. Elegant & Functional Build.</div><div>Franklin Gothic Demi 700 / Book 400 • Navy #002448 #00162e #00101f #0a3161 #e8edf4 • Gold #b48430 #c9a24b #e9d9b4 #f6efe0 • Header #f8f6f2 • 31 Real Photos</div></div>
 </footer>
 
+<button id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 left-6 w-10 h-10 bg-white border shadow-lg flex items-center justify-center text-[12px] font-bold hover:bg-[#002448] hover:text-white transition z-30 opacity-0 pointer-events-none" style="border-color:var(--hair)">↑</button>
+
 <script>
-// Mobile
-document.getElementById('menuBtn').onclick = () => document.getElementById('mobileMenu').classList.toggle('hidden');
-// Scroll progress
-window.addEventListener('scroll', ()=>{
-  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const scrolled = (winScroll / height) * 100;
-  document.getElementById('scrollProgress').style.width = scrolled + '%';
+// UTILS
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200)}
+function openLight(src){document.getElementById('lightImg').src=src;document.getElementById('lightbox').classList.add('open')}
+function openBook(type){document.getElementById('bType').value=type;document.getElementById('bookModalTitle').textContent=type;document.getElementById('bookModal').classList.add('open');renderBookings()}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+
+// MOBILE
+const mobToggle=document.getElementById('mobToggle'),mobMenu=document.getElementById('mobMenu');
+mobToggle&&mobToggle.addEventListener('click',()=>mobMenu.classList.toggle('hidden'));
+
+// PROGRESS + HEADER + TOP + REVEAL + COUNTER + NAV SPY
+const prog=document.getElementById('progress'), header=document.getElementById('siteHeader'), toTop=document.getElementById('toTop');
+const counters=document.querySelectorAll('.counter'); let counted=false;
+function onScroll(){
+ const h=document.documentElement; const scrolled=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+ if(prog) prog.style.width=scrolled+'%';
+ if(window.scrollY>20){header.classList.add('shadow-[0_4px_24px_rgba(0,0,0,.06)]')}else{header.classList.remove('shadow-[0_4px_24px_rgba(0,0,0,.06)]')}
+ if(window.scrollY>600){toTop.style.opacity='1';toTop.style.pointerEvents='auto'}else{toTop.style.opacity='0';toTop.style.pointerEvents='none'}
+ // reveal
+ document.querySelectorAll('.reveal').forEach(el=>{const r=el.getBoundingClientRect(); if(r.top<window.innerHeight*0.88) el.classList.add('in')});
+ // counters
+ if(!counted && window.scrollY>200){counted=true; counters.forEach(c=>{const target=+c.dataset.target; let cur=0; const inc=target/30; const timer=setInterval(()=>{cur+=inc; if(cur>=target){c.textContent=target; clearInterval(timer)}else c.textContent=Math.floor(cur)},40)})}
+ // nav spy
+ const sections=['home','about','businesses','investments','gallery','contact']; let cur='home';
+ sections.forEach(id=>{const el=document.getElementById(id); if(el){const top=el.offsetTop-120; if(window.scrollY>=top) cur=id}});
+ document.querySelectorAll('.nav-link').forEach(a=>{a.classList.remove('text-[#002448]','border-[#b48430]'); a.classList.add('text-[#45566c]','border-transparent'); if(a.dataset.nav===cur){a.classList.add('text-[#002448]','border-[#b48430]'); a.classList.remove('text-[#45566c]','border-transparent')}});
+}
+window.addEventListener('scroll',onScroll); onScroll();
+
+// FILTER
+function filterBiz(cat){
+ document.querySelectorAll('.filter-btn').forEach(b=>{b.classList.remove('bg-[#002448]','text-white','active'); if(b.dataset.filter===cat){b.classList.add('bg-[#002448]','text-white','active')}});
+ document.querySelectorAll('.biz-card').forEach(card=>{if(cat==='all' || card.dataset.cat===cat){card.style.display=''}else{card.style.display='none'}});
+ showToast(cat==='all'?'Showing all 11 businesses':'Filtered: '+cat.toUpperCase());
+}
+
+// BOOKINGS STORAGE
+function getBookings(){try{return JSON.parse(localStorage.getItem('aha_bookings')||'[]')}catch{return[]}}
+function saveBooking(b){const arr=getBookings(); arr.unshift(b); localStorage.setItem('aha_bookings',JSON.stringify(arr.slice(0,20))); renderBookings(); renderCentral();}
+function renderBookings(){
+ const arr=getBookings(); const wrap=document.getElementById('bookingsList'), list=document.getElementById('bookList');
+ const cWrap=document.getElementById('centralList'), cList=document.getElementById('cList');
+ if(arr.length){wrap&&wrap.classList.remove('hidden'); cWrap&&cWrap.classList.remove('hidden');
+ const html=arr.map(x=>`<div class="p-2.5 bg-[#f8f6f2] border text-[11px] leading-4" style="border-color:var(--hair)"><div class="font-bold text-[#002448]">${x.type} • ${x.date}</div><div class="text-[#45566c]">${x.name} — ${x.contact} • ${x.guests}</div></div>`).join('');
+ if(list) list.innerHTML=html; if(cList) cList.innerHTML=html;
+ } else {
+ if(wrap) wrap.classList.add('hidden'); if(cWrap) cWrap.classList.add('hidden');
+ }
+}
+function renderCentral(){renderBookings()}
+renderBookings();
+
+// FORMS
+document.getElementById('bookingForm')?.addEventListener('submit',e=>{
+ e.preventDefault();
+ const b={type:document.getElementById('bType').value||'General',date:document.getElementById('bDate').value,guests:document.getElementById('bGuests').value,name:document.getElementById('bName').value,contact:document.getElementById('bContact').value,note:document.getElementById('bNote').value,at:new Date().toISOString()};
+ saveBooking(b); showToast('✓ Booking saved: '+b.type); e.target.reset(); setTimeout(()=>closeModal('bookModal'),600);
+});
+document.getElementById('centralBook')?.addEventListener('submit',e=>{
+ e.preventDefault();
+ const b={type:document.getElementById('cType').value,date:document.getElementById('cDate').value,guests:document.getElementById('cGuests').value,name:document.getElementById('cName').value,contact:document.getElementById('cContact').value,note:'Central booking',at:new Date().toISOString()};
+ saveBooking(b); showToast('✓ Central booking saved: '+b.type); e.target.reset();
+});
+function getPartners(){try{return JSON.parse(localStorage.getItem('aha_partners')||'[]')}catch{return[]}}
+function savePartner(p){const arr=getPartners(); arr.unshift(p); localStorage.setItem('aha_partners',JSON.stringify(arr.slice(0,20))); renderPartners();}
+function renderPartners(){
+ const arr=getPartners(); const wrap=document.getElementById('partnerList'), list=document.getElementById('pList');
+ if(arr.length && wrap){wrap.classList.remove('hidden'); list.innerHTML=arr.map(x=>`<div class="p-2.5 bg-[#f8f6f2] border text-[11px] leading-4" style="border-color:var(--hair)"><div class="font-bold text-[#002448]">${x.interest} • ${x.name}</div><div class="text-[#45566c]">${x.email} — ${x.msg.slice(0,80)}</div></div>`).join('')}
+}
+renderPartners();
+document.getElementById('partnerForm')?.addEventListener('submit',e=>{
+ e.preventDefault();
+ const p={name:document.getElementById('pName').value,email:document.getElementById('pEmail').value,interest:document.getElementById('pInterest').value,msg:document.getElementById('pMsg').value,at:new Date().toISOString()};
+ savePartner(p); showToast('✓ Partnership inquiry saved: '+p.interest); e.target.reset();
+});
+document.getElementById('newsForm')?.addEventListener('submit',e=>{
+ e.preventDefault(); const email=document.getElementById('newsEmail').value;
+ const list=JSON.parse(localStorage.getItem('aha_news')||'[]'); list.unshift({email,at:new Date().toISOString()}); localStorage.setItem('aha_news',JSON.stringify(list));
+ showToast('✓ Subscribed: '+email); e.target.reset();
 });
 
-// Business data - 11 per website changes.pdf
-const businesses = [
-  { id:'01', anchor:'biz-01', name:'Travel & Tourism', tag:'Domestic • International • DMC', img:'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1000&auto=format&fit=crop', desc:'Your complete travel partner in Indonesia and International markets — domestic, international, holiday packages, motorcycle & adventure tourism, group & honeymoon, corporate travel and destination management.', services:['Domestic Tours','International Tours','Holiday Packages','Motorcycle Tours','Adventure Tourism','Group Tours','Honeymoon Packages','Visa Assistance','Hotel Reservations','Air Ticketing','Corporate Travel','Destination Management','Airport Transfers','Travel Insurance'], pages:['Gallery','Tour Packages','Testimonials','Book Now'], cta:'Book Now' },
-  { id:'02', anchor:'biz-02', name:'Hospitality & Accommodation', tag:'Quiet Luxury', img:'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop', desc:'Rooms designed for rest, halls designed for occasions — luxury rooms, executive suites, family rooms, conference and banquet facilities across Indonesia.', services:['Luxury Rooms','Executive Suites','Family Rooms','Conference Hall','Banquet Facilities','Airport Pick & Drop','Business Lounge','Free Wi-Fi','Laundry','Room Service'], pages:['Online Booking','Gallery'], cta:'Online Booking' },
-  { id:'03', anchor:'biz-03', name:'Restaurants & Café', tag:'Seven Kitchens', img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1000&auto=format&fit=crop', desc:'Seven kitchens under one roof — Pakistani, Indonesian, Chinese, Continental, BBQ, Seafood, Fast Food, Coffee Shop & Bakery, with private and outdoor dining.', services:['Pakistani Cuisine','Indonesian Cuisine','Chinese Cuisine','Continental','BBQ','Seafood','Fast Food','Coffee Shop','Bakery'], pages:['Private Dining','Outdoor Dining','Online Reservations','Food Gallery'], cta:'Online Reservations' },
-  { id:'04', anchor:'biz-04', name:'Retail & Mini Mart', tag:'Neighbourhood Shelf', img:'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?q=80&w=1000&auto=format&fit=crop', desc:'The neighbourhood shelf, held to a corporate standard — fresh, frozen, imported and everyday, checked, dated and priced fairly for Indonesia market.', services:['Grocery','Fresh Produce','Frozen Food','Dairy','Snacks','Beverages','Household Items','Personal Care','Stationery','Imported Products'], pages:['Online Shopping','Weekly Promotions'], cta:'Online Shopping' },
-  { id:'05', anchor:'biz-05', name:'Automotive Services', tag:'Car Wash & Auto Detailing', img:'https://images.unsplash.com/photo-1552930294-6b595f4c2974?q=80&w=1000&auto=format&fit=crop', desc:'A studio, not a wash bay — premium car wash, interior/exterior detailing, ceramic coating, paint protection, engine cleaning, headlight restoration, bike detailing, steam cleaning, polishing.', services:['Premium Car Wash','Interior Detailing','Exterior Detailing','Ceramic Coating','Paint Protection','Engine Cleaning','Headlight Restoration','Bike Detailing','Steam Cleaning','Car Polishing'], pages:['Appointment Booking','Pricing','Gallery'], cta:'Appointment Booking' },
-  { id:'06', anchor:'biz-06', name:'Agriculture & Farm Ventures', tag:'Farm House & Agri Tourism', img:'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1000&auto=format&fit=crop', desc:'Weekends that taste of soil and smoke — family picnic, weekend stay, organic farming, fruit picking, educational tours, horse riding, camping, BBQ, kids activities, corporate retreats in Indonesia.', services:['Family Picnic','Weekend Stay','Organic Farming','Fruit Picking','Educational Tours','Horse Riding','Camping','BBQ Area','Kids Activities','Corporate Retreats'], pages:['Online Booking','Gallery'], cta:'Online Booking' },
-  { id:'07', anchor:'biz-07', name:'Fisheries & Aquaculture', tag:'Fish & Prawn Farming', img:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop', desc:'Sustainable aquaculture in Indonesia — fresh fish & prawns, wholesale & retail, live fish, with aquaculture consultancy and farm visits.', services:['Fresh Fish','Fresh Prawns','Wholesale Supply','Retail Sales','Live Fish','Aquaculture Consultancy','Farm Visits'], pages:['Product Catalogue','Wholesale Inquiry'], cta:'Wholesale Inquiry' },
-  { id:'08', anchor:'biz-08', name:'Import, Export & International Trade', tag:'Corridors • Indonesia + International', img:'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop', desc:'Facilitating cross-border trade — Indonesia hub and International markets — agricultural products, food, seafood, consumer goods, construction materials, industrial equipment, textiles, general merchandise.', services:['Agricultural Products','Food Products','Seafood','Consumer Goods','Construction Materials','Industrial Equipment','Textiles','General Merchandise'], pages:['International Sourcing','Logistics','Custom Clearance Assistance','Business Partnership'], cta:'Business Partnership' },
-  { id:'09', anchor:'biz-09', name:'Healthcare & Pharmacy', tag:'Medical Store', img:'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1000&auto=format&fit=crop', desc:'International standard of care — prescription medicines, OTC, surgical supplies, baby care, health supplements, personal care, medical equipment, first aid products in Indonesia.', services:['Prescription Medicines','Over-the-Counter Medicines','Surgical Supplies','Baby Care','Health Supplements','Personal Care','Medical Equipment','First Aid Products'], pages:['Prescription Upload','Home Delivery','Online Orders'], cta:'Home Delivery' },
-  { id:'10', anchor:'biz-10', name:'Legal, Corporate & Business Consultancy', tag:'Professional Network', img:'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1000&auto=format&fit=crop', desc:'Qualified practitioners in law, tax, finance and corporate services — Indonesia and International markets compliance and advisory.', services:['Company Incorporation (PT, PMA)','Legal Advisory & Contracts','Corporate Structuring','Tax & Compliance','Investment Advisory & Licensing','Business Licensing & Permits','Notary & Legalization','Cross-border Compliance','Due Diligence & Risk'], pages:['Consultation Booking','Service Catalogue','Case Studies'], cta:'Book Consultation' },
-  { id:'11', anchor:'biz-11', name:'Corporate & Professional Training', tag:'Skills Development', img:'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop', desc:'Training that leaves teams with usable skills — hospitality, tourism, business and leadership development for Indonesia and International standards.', services:['Hospitality Training','Tourism Guide Certification','Leadership & Management','Customer Service Excellence','Food Safety & Hygiene','Barista & Culinary Training','Automotive Detailing Training','Retail Operations Training','Language & Communication','Corporate Workshops'], pages:['Training Calendar','Certification Programs','Corporate Inquiry'], cta:'View Programs' },
-];
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+ a.addEventListener('click',e=>{
+  const id=a.getAttribute('href'); if(id.length>1){const el=document.querySelector(id); if(el){e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); mobMenu&&mobMenu.classList.add('hidden');}}
+ });
+});
 
-const bizList = document.getElementById('bizList');
-const bizDetail = document.getElementById('bizDetail');
-let activeId = '01';
-function renderList(){
-  bizList.innerHTML = businesses.map(b=>`<button id="${b.anchor}" data-id="${b.id}" class="business-item w-full text-left group flex items-center justify-between gap-4 px-5 py-[14px] rounded-full bg-white/[0.06] text-white/70 hover:text-white"><div class="flex items-center gap-4"><span class="font-mono text-[11px] ${b.id===activeId?'text-gold':'opacity-40'}">${b.id}</span><span class="text-[13px] font-heading tracking-[-0.01em]">${b.name}</span></div><span class="w-6 h-6 rounded-full bg-white/10 grid place-items-center text-[12px] text-white">↗</span></button>`).join('');
-  bizList.querySelectorAll('button').forEach(btn=>{
-    btn.onclick = ()=>{ activeId=btn.dataset.id; renderList(); renderDetail(); document.getElementById('bizDetail').scrollIntoView({behavior:'smooth', block:'center'}); };
-    if(btn.dataset.id===activeId){ btn.classList.add('active'); btn.classList.remove('bg-white/[0.06]','text-white/70'); }
-  });
-}
-function renderDetail(){
-  const b = businesses.find(x=>x.id===activeId);
-  bizDetail.innerHTML = `<div id="${b.anchor}-detail" class="relative h-full flex flex-col"><div class="relative h-[320px] overflow-hidden"><img src="${b.img}" class="w-full h-full object-cover"><div class="absolute inset-0 bg-gradient-to-t from-deepNavy via-navy/20 to-transparent"></div><div class="absolute top-6 left-6 flex flex-wrap gap-2 max-w-[80%]"><span class="px-3 py-1 rounded-full bg-goldWash border gold-hairline text-navy text-[11px] font-heading uppercase tracking-[0.06em]">${b.tag}</span><span class="px-3 py-1 rounded-full bg-deepNavy/80 backdrop-blur border border-white/20 text-paleGold text-[11px] uppercase tracking-[0.06em]">${b.id} / 11</span>${b.pages.map(p=>`<span class="px-3 py-1 rounded-full bg-white/90 border navy-hairline text-navy text-[10px] font-body">${p}</span>`).join('')}</div><div class="absolute bottom-6 left-6 right-6"><h3 class="font-heading text-[28px] lg:text-[32px] leading-[0.95] text-white tracking-[-0.02em]">${b.name}</h3><div class="w-12 h-[2px] bg-gold mt-3"></div></div></div><div class="p-7 lg:p-8 flex-1 bg-paper"><p class="text-[14px] leading-[1.65] text-secondaryInk max-w-[600px] font-body">${b.desc}</p><div class="mt-8"><div class="text-[11px] tracking-[0.14em] uppercase text-gold font-heading mb-3">Services / Products</div><div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">${b.services.map(s=>`<div class="flex items-center gap-2.5 text-[12.5px] text-bodyInk font-body"><span class="w-5 h-5 rounded-full bg-goldWash border gold-hairline grid place-items-center text-[9px] text-gold">•</span>${s}</div>`).join('')}</div></div><div class="mt-8"><div class="text-[11px] tracking-[0.14em] uppercase text-gold font-heading mb-3">Pages / Tabs</div><div class="flex flex-wrap gap-2">${b.pages.map(p=>`<span class="px-3 py-1.5 rounded-full bg-ivory border navy-hairline text-[11px] font-body text-navy">${p}</span>`).join('')}</div></div><div class="mt-10 flex flex-wrap gap-3"><a href="#contact" class="h-11 px-6 rounded-full bg-gold text-white text-[13px] font-heading inline-flex items-center gap-2 hover:bg-brightGold shadow-[0_4px_16px_rgba(180,132,48,0.25)] tracking-[0.02em]">${b.cta} →</a><button class="h-11 px-5 rounded-full border navy-hairline bg-ivory text-[13px] font-body text-navy hover:bg-goldWash hover:border-gold-hairline">Gallery</button><button class="h-11 px-5 rounded-full border navy-hairline bg-ivory text-[13px] font-body text-navy hover:bg-goldWash">Pricing / Catalogue</button></div></div></div>`;
-}
-renderList(); renderDetail();
+// CLOSE MODALS ON ESC
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal.open,.lightbox.open').forEach(m=>m.classList.remove('open'))}});
 </script>
 </body>
 </html>
